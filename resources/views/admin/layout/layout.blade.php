@@ -28,15 +28,15 @@
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
         <a href="javascript:;">
-          <img src="http://img.2001.com/uploads/wcwMr3gVOzdajl2pqehre4VQqPj6vGD1JwagPYFJ.jpeg" class="layui-nav-img">
-          蓝山夏
+          <img src="" class="layui-nav-img">
+          用户名称
         </a>
         <dl class="layui-nav-child">
           <dd><a href="">基本资料</a></dd>
           <dd><a href="">安全设置</a></dd>
         </dl>
       </li>
-      <li class="layui-nav-item"><a href="">臣退了</a></li>
+      <li class="layui-nav-item"><a href="">退出</a></li>
     </ul>
   </div>
   
