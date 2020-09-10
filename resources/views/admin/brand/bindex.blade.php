@@ -153,14 +153,14 @@
             })
             //console.log(ids)
             $.get('/admin/bdels',{brand_id:ids},function (res){
-              if(res.code=='000000'){
-                            // location.href=reg['url'];
-                             window.location.reload();
-                           }else{
-                               alert('reg.message');
-                           }
-               
-            })
+                    if(res.code=='000000'){
+                        location.href=res.url
+                    }else{
+                      console.log(res.message)
+                    }
+            },
+               'json'
+            )
         })
 
          //ajax分页

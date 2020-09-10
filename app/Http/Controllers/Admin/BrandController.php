@@ -80,7 +80,7 @@ class BrandController extends Controller
         }
 
         $BrandModel=new Brand();
-        $data=$BrandModel->where('is_del',1)->where($where)->orderBy('brand_id','desc')->paginate(5);
+        $data=$BrandModel->where('is_del',1)->where($where)->orderBy('brand_id','desc')->paginate(2);
         if(request()->ajax()){
            return view('admin.brand.ajaxpage',['data'=>$data,'query'=>request()->all()]);
         }
