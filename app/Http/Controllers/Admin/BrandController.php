@@ -15,11 +15,12 @@ class BrandController extends Controller
      }
      #文件上传
      public function upload(Request $request){
-
+        $data = $request->file;
+        // dd($data);
          if ($request->hasFile('file') && $request->file('file')->isValid()) {
           $photo = request()->file;
           $store_result = $photo->store('uploads');
-          $data=env('UPLOADS_URL').$store_result;
+          $data='/'.$store_result;
          // dd($data);
            return json_encode(['code'=>0,'msg'=>'上传成功','result'=>$data]);
      }
