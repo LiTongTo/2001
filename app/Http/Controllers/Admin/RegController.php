@@ -10,6 +10,7 @@ use Illuminate\Validation\Rule;
 class RegController extends Controller
 {
     public function reg(){
+
         $code = $this->getImageCodeUrl(request());
         return view('admin.reg.reg',['code'=>$code]);
     }
@@ -24,10 +25,15 @@ class RegController extends Controller
         }else if($data['code']!=$code){
             return redirect('/admin/reg')->with('msg','验证码错误');
         } else{
-            session('login',$res);
+            session(['login' => $res]);
             return redirect('/admin/index');
         }
 
+    }
+
+    public function quit(){
+        session(['login' => null]);
+        return redirect('/admin/reg');
     }
 
 
@@ -37,7 +43,7 @@ class RegController extends Controller
 
     public function store(Request $request){
         $data = $request->except('_token');
-
+        $data['add_time']=time();
         $validatedData = $request->validate([
             'admin_name' => 'required|unique:admin',
             'admin_pwd' => 'required',
@@ -53,7 +59,7 @@ class RegController extends Controller
     }
 
     public function index(){
-        $data = Admin::orderBy('admin_id','desc')->paginate(2);
+        $data = Admin::where('is_del',1)->orderBy('admin_id','desc')->paginate(2);
         return view('admin.reg.index',['data'=>$data]);
     }
 
@@ -62,7 +68,7 @@ class RegController extends Controller
         if(!$id){
             return;
         }
-        $res = Admin::destroy($id);
+        $res = Admin::where('admin_id',$id)->update(['is_del'=>2]);
         if(request()->ajax()){
             return response()->json(['code'=>0,'msg'=>'删除成功']);
         }
@@ -101,7 +107,11 @@ class RegController extends Controller
 //            'admin_pwd.required'=>'密码不能为空',
 //        ]);
             $res = Admin::where('admin_id',$id)->update($data);
-            if($res=='0'){
+            if($res==='0'){
+                return redirect('/admin/list');
+            }else if($res==='1'){
+                return redirect('/admin/list');
+            }else{
                 return redirect('/admin/list');
             }
     }

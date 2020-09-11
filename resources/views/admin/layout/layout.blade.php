@@ -10,7 +10,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <div class="layui-logo">后台控制中心</a></div>
+    <a href="/admin/index"><div class="layui-logo">后台控制中心</div></a>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
       <li class="layui-nav-item"><a href="">控制台</a></li>
@@ -25,19 +25,30 @@
         </dl>
       </li>
     </ul>
+    @if(session('login')=='')
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
-        <a href="javascript:;">
-          <img src="" class="layui-nav-img">
-          用户名称
+        <a href="/admin/reg">
+          登录
         </a>
-        <dl class="layui-nav-child">
-          <dd><a href="">基本资料</a></dd>
-          <dd><a href="">安全设置</a></dd>
-        </dl>
+
       </li>
-      <li class="layui-nav-item"><a href="">退出</a></li>
+
     </ul>
+    @else
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+           欢迎 @php echo session('login')->admin_name;@endphp
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="">基本资料</a></dd>
+            <dd><a href="">安全设置</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="/admin/quit/">退出</a></li>
+      </ul>
+    @endif
   </div>
   
   <div class="layui-side layui-bg-black">
@@ -80,7 +91,7 @@
           <a href="">管理员管理</a>
           <dl class="layui-nav-child">
             <dd @if($name=='admin.create') class='layui-this'@endif><a href="/admin/create">管理员添加</a></dd>
-            <dd @if($name=='admin.list') class='layui-this'@endif><a href="/admin/bindex">管理员列表</a></dd>
+            <dd @if($name=='admin.list') class='layui-this'@endif><a href="/admin/list">管理员列表</a></dd>
 
           </dl>
         </li>

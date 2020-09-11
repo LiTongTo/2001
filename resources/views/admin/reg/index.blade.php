@@ -57,11 +57,15 @@
                 if(!admin_id){
                     return;
                 }
-                $.get('/admin/delete/'+admin_id,function(res){
-                    alert(res.msg);
-                    //$(obj).parents('tr').hide();
-                    location.reload();
-                },'json')
+                $al=confirm('是否确定删除！');
+                if($al==true){
+                    $.get('/admin/delete/'+admin_id,function(res){
+                        alert(res.msg);
+                        //$(obj).parents('tr').hide();
+                        location.reload();
+                    },'json')
+                }
+
             }
         </script>
 

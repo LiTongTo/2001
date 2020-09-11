@@ -47,3 +47,4 @@ Route::any('/admin/list','Admin\RegController@index')->name('admin.list');
 Route::any('/admin/delete/{brand_id}','Admin\RegController@delete');
 Route::any('/admin/edit/{admin_id}','Admin\RegController@edit');
 Route::any('/admin/update/{admin_id}','Admin\RegController@update');
+Route::any('/admin/quit/','Admin\RegController@quit');
