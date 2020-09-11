@@ -69,8 +69,8 @@
          <li @if(strpos($name,'brand')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
             <a href="javascript:;">分类管理</a>
             <dl class="layui-nav-child">
-            <dd @if($name=='brand.create') class='layui-this'@endif><a href="/admin/cate">分类添加</a></dd>
-            <dd @if($name=='brand') class='layui-this'@endif><a href="/admin/cate_index">分类列表</a></dd>
+            <dd @if($name=='cate.cate') class='layui-this'@endif><a href="/admin/cate">分类添加</a></dd>
+            <dd @if($name=='cate.cate_brand') class='layui-this'@endif><a href="/admin/cate_index">分类列表</a></dd>
             
           </dl>
         </li>
