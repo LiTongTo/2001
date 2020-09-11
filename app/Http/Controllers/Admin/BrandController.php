@@ -21,7 +21,8 @@ class BrandController extends Controller
           $photo = request()->file;
           $store_result = $photo->store('uploads');
           $data='/'.$store_result;
-         // dd($data);
+       
+         //dd($data);
            return json_encode(['code'=>0,'msg'=>'上传成功','result'=>$data]);
      }
            return json_encode(['code'=>1,'msg'=>'上传失败']);
@@ -64,6 +65,7 @@ class BrandController extends Controller
 
         $BrandModel=new Brand();
         $res=$BrandModel->create($data);
+       // dd($res);
         if($res){
             return redirect('/admin/bindex');
         }
