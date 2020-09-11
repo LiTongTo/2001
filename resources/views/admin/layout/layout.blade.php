@@ -74,6 +74,17 @@
             
           </dl>
         </li>
+         </li>
+
+        <li @if(strpos($name,'admin')!==false) class="layui-nav-item layui-nav-itemed" @else  class="layui-nav-item" @endif>
+          <a href="">管理员管理</a>
+          <dl class="layui-nav-child">
+            <dd @if($name=='admin.create') class='layui-this'@endif><a href="/admin/create">管理员添加</a></dd>
+            <dd @if($name=='admin.list') class='layui-this'@endif><a href="/admin/bindex">管理员列表</a></dd>
+
+          </dl>
+        </li>
+
       </ul>
     </div>
   </div>

@@ -37,3 +37,13 @@ Route::prefix('/admin')->group(function(){
 
 
 });
+
+Route::any('/admin/reg','Admin\RegController@reg');
+Route::any('/admin/regdo','Admin\RegController@regdo');
+Route::any('/admin/imageCode','Admin\RegController@imageCode');
+Route::any('/admin/create','Admin\RegController@create')->name('admin.create');
+Route::any('/admin/store','Admin\RegController@store');
+Route::any('/admin/list','Admin\RegController@index')->name('admin.list');
+Route::any('/admin/delete/{brand_id}','Admin\RegController@delete');
+Route::any('/admin/edit/{admin_id}','Admin\RegController@edit');
+Route::any('/admin/update/{admin_id}','Admin\RegController@update');
