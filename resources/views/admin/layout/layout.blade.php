@@ -100,7 +100,7 @@ layui.use('upload', function(){
     //拖拽上传
   upload.render({
     elem: '#test10'
-    ,url: 'http://2001.com/admin/upload' //改成您自己的上传接口
+    ,url: '/admin/upload' //改成您自己的上传接口
     ,done: function(res){
       layer.msg(res.msg);
       layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.result);

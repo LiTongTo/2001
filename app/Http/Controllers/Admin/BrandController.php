@@ -19,8 +19,8 @@ class BrandController extends Controller
          if ($request->hasFile('file') && $request->file('file')->isValid()) {
           $photo = request()->file;
           $store_result = $photo->store('uploads');
-          $data=env('UPLOADS_URL').$store_result;
-         // dd($data);
+          $data='/'.$store_result;
+         //dd($data);
            return json_encode(['code'=>0,'msg'=>'上传成功','result'=>$data]);
      }
            return json_encode(['code'=>1,'msg'=>'上传失败']);
@@ -63,6 +63,7 @@ class BrandController extends Controller
 
         $BrandModel=new Brand();
         $res=$BrandModel->create($data);
+       // dd($res);
         if($res){
             return redirect('/admin/bindex');
         }
