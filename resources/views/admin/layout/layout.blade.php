@@ -91,7 +91,7 @@
           <a href="">管理员管理</a>
           <dl class="layui-nav-child">
             <dd @if($name=='admin.create') class='layui-this'@endif><a href="/admin/create">管理员添加</a></dd>
-            <dd @if($name=='admin.list') class='layui-this'@endif><a href="/admin/bindex">管理员列表</a></dd>
+            <dd @if($name=='admin.list') class='layui-this'@endif><a href="/admin/list">管理员列表</a></dd>
 
           </dl>
         </li>
