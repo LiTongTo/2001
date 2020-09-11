@@ -29,9 +29,9 @@ Route::prefix('/admin')->group(function(){
     Route::any('/bdel','Admin\BrandController@bdel');//删除
     Route::any('/bdels','Admin\BrandController@bdels');//批量删除
 
-    Route::any('/cate','Admin\CateController@cate');//分类添加
+    Route::any('/cate','Admin\CateController@cate')->name('cate.cate');//分类添加
     Route::any('/cate_add','Admin\CateController@cate_add');//分类添加
-    Route::any('/cate_index','Admin\CateController@cate_index');//分类添加
+    Route::any('/cate_index','Admin\CateController@cate_index')->name('cate.cate_index');//分类添加
     Route::any('/cate_del','Admin\CateController@cate_del');//分类添加
     Route::any('/jdjg','Admin\CateController@jdjg');//分类添加
 
