@@ -10,7 +10,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <div class="layui-logo">后台控制中心</a></div>
+    <a href="/admin/index"><div class="layui-logo">后台控制中心</div></a>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
       <li class="layui-nav-item"><a href="">控制台</a></li>
@@ -25,19 +25,30 @@
         </dl>
       </li>
     </ul>
+    @if(session('login')=='')
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
-        <a href="javascript:;">
-          <img src="" class="layui-nav-img">
-          用户名称
+        <a href="/admin/reg">
+          登录
         </a>
-        <dl class="layui-nav-child">
-          <dd><a href="">基本资料</a></dd>
-          <dd><a href="">安全设置</a></dd>
-        </dl>
+
       </li>
-      <li class="layui-nav-item"><a href="">退出</a></li>
+
     </ul>
+    @else
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+           欢迎 @php echo session('login')->admin_name;@endphp
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="">基本资料</a></dd>
+            <dd><a href="">安全设置</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="/admin/quit/">退出</a></li>
+      </ul>
+    @endif
   </div>
 
   <div class="layui-side layui-bg-black">
@@ -65,14 +76,31 @@
 
           </dl>
         </li>
-        <li class="layui-nav-item">
-                 <a href="">分类管理</a>
+
+         <li @if(strpos($name,'cate')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
+            <a href="javascript:;">分类管理</a>
             <dl class="layui-nav-child">
-            <dd><a href="/admin/brand">分类添加</a></dd>
-            <dd><a href="/admin/bindex">分类列表</a></dd>
+
+
+
+
+            <dd @if($name=='cate.create') class='layui-this'@endif><a href="/admin/cate">分类添加</a></dd>
+            <dd @if($name=='cate') class='layui-this'@endif><a href="/admin/cate_index">分类列表</a></dd>
+
 
           </dl>
+        </li>
          </li>
+
+        <li @if(strpos($name,'user')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
+          <a href="javscript:;">管理员管理</a>
+          <dl class="layui-nav-child">
+            <dd @if($name=='user.create') class='layui-this'@endif><a href="/admin/create">管理员添加</a></dd>
+            <dd @if($name=='user') class='layui-this'@endif><a href="/admin/list">管理员列表</a></dd>
+
+          </dl>
+        </li>
+
       </ul>
     </div>
   </div>
