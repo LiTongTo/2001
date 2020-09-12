@@ -29,6 +29,14 @@ Route::prefix('/admin')->group(function(){
     Route::any('/bdel','Admin\BrandController@bdel');//删除
     Route::any('/bdels','Admin\BrandController@bdels');//批量删除
 
+
+    //多文件上传
+    Route::any('/goods_imgs','Admin\ImgsController@goods_imgs');
+    Route::any('/goods_imgsdo','Admin\ImgsController@goods_imgsdo');
+    Route::any('/imgsdo','Admin\ImgsController@imgsdo');
+    Route::any('/goods_imgslist','Admin\ImgsController@goods_imgslist');
+    Route::any('/img_del/{id?}','Admin\ImgsController@img_del');
+
    // ****************************************************************
     Route::any('goods','Admin\GoodsController@goods')->name('goods.create');//添加页面
     Route::any('store','Admin\GoodsController@store');
@@ -53,9 +61,10 @@ Route::prefix('/admin')->group(function(){
     Route::any('/store','Admin\RegController@store');
     Route::any('/list','Admin\RegController@index')->name('user');
     Route::any('/delete/{brand_id}','Admin\RegController@delete');
-    Route::any('/edit/{admin_id}','Admin\RegController@edit');
-    Route::any('/update/{admin_id}','Admin\RegController@update');
+    Route::any('/redit/{admin_id}','Admin\RegController@redit');
+    Route::any('/rupdate/{admin_id}','Admin\RegController@rupdate');
     Route::any('/quit/','Admin\RegController@quit');
+
 
 
 });
