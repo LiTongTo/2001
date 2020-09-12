@@ -41,7 +41,7 @@ class RegController extends Controller
         return view('admin.reg.create');
     }
 
-    public function store(Request $request){
+    public function rstore(Request $request){
         $data = $request->except('_token');
         $data['add_time']=time();
         $validatedData = $request->validate([

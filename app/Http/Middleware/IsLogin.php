@@ -16,6 +16,7 @@ class IsLogin
     public function handle($request, Closure $next)
     {
         $data=session('login');
+        //dd($data);
         if(empty($data)){
             return redirect('/admin/reg')->with('msg','请先登录');
         }

@@ -34,7 +34,7 @@ class ImgsController extends Controller
     public function imgsdo(){
         $data=request()->all();
         $data['goods_imgs']=implode('|',$data['goods_imgs']);
-        $goods = new Goodsimg();
+        $goods = new Gimgs();
         $post = $goods->create($data);
         //dd($post);
         return redirect('/admin/goods_imgslist');
@@ -43,7 +43,7 @@ class ImgsController extends Controller
     //相册展示
     public function  goods_imgslist(request $request)
     {
-       $data = DB::table('gimgs')->where('is_del',1)->get();
+       $data = DB::table('gimgs')->where('is_del',1)->paginate(2);
        //dd($data);
         return view('admin.goods_imgs.goods_imgslist',['data'=>$data]);
     }

@@ -3,21 +3,11 @@
 @section('content')
     <span class="layui-breadcrumb" >
   <a href="/admin/index">首页</a>
-  <a href="javascript:;">品牌管理</a>
-  <a><cite>品牌展示</cite></a>
+  <a href="javascript:;">商品管理</a>
+  <a><cite>商品相册展示</cite></a>
 </span>
-    <form class="layui-form" style="padding-bottom: 10px; padding-top:15px;padding-left: 10px;">
-        品牌名称：
-        <div class="layui-input-inline">
-            <input type="text" name="brand_name"  class="layui-input" value="{{$brand['brand_name']??''}}" placeholder="请输入品牌名称......">
-        </div>
-        品牌网址：
-        <div class="layui-input-inline">
-            <input type="text" name="brand_url" class="layui-input" value="{{$brand['brand_url']??''}}" placeholder="请输入品牌网址......">
-        </div>
-        <button type="submit" class="layui-btn">搜索</button>
-    </form>
-    <button type="button" class="layui-btn layui-btn-primary moredel">批量删除</button>
+
+
     <div class="layui-form">
         <table class="layui-table">
             <colgroup>
@@ -29,7 +19,7 @@
             <thead>
             <tr >
                 <td>
-                    <input type="checkbox" name="checkedall"  lay-skin="primary"  >
+
                     <span id='flag'>全选</span>
                 </td>
                 <td align='center' >品牌id</td>
@@ -45,19 +35,23 @@
                     <td>
                         @php $goods_imgs = explode("|",$v->goods_imgs);@endphp
                         @foreach($goods_imgs as $vv)
-                            <img src="{{$vv}}" >
+                            <img src="{{$vv}}"  width="50px">
                         @endforeach
                         {{--{{$v->goods_imgs}}--}}
                     </td>
                     <td align='center'>
                         <div class="layui-btn-group">
-                            <a href='/admin/bedit/{{$v->id}}' class="layui-btn layui-btn-sm"><i class="layui-icon"></i>修改</a>
-                            <a imgs_id="{{$v->id}}" class="layui-btn layui-btn-sm del "><i class="layui-icon "></i>删除</a>
+                            <a href='/admin/bedit/{{$v->id}}' class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
+                            <a imgs_id="{{$v->id}}" class="layui-btn layui-btn-sm del "><i class="layui-icon "></i></a>
 
                         </div>
                     </td>
                 </tr>
             @endforeach
+            <tr>
+                <td colspan="6px">{{$data->links('vendor.pagination.adminshop')}}
+                </td>
+            </tr>
             </tbody>
 
         </table>

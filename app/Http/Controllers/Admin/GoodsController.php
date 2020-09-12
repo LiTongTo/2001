@@ -40,7 +40,7 @@ class GoodsController extends Controller
         $data = Goods::leftJoin('brand', 'goods.brand_id', '=', 'brand.brand_id')
                         ->leftJoin('cate', 'goods.cate_id', '=', 'cate.cate_id')
                         ->select('goods.*','cate.cate_name','brand.brand_name')
-                        ->get();
+                        ->paginate(3);
 //        dd($data);
         return view('admin.goods.gindex', ['data' => $data]);
     }

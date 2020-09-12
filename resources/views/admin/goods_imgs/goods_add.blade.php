@@ -17,7 +17,7 @@
     @endif
     <form class="layui-form" action="/admin/imgsdo" method='post' style="margin-top:20px;">
 
-        <div class="layui-form-item">
+        <div class="layui-form-item" style="margin-left: -10px;">
             <label class="layui-form-label">商品id</label>
             <div class="layui-input-block">
                 <select name="goods_id">
@@ -25,7 +25,7 @@
                 </select>
             </div>
         </div>
-        <div class="layui-upload">
+        <div class="layui-upload" style="margin-left: 50px;">
             <button type="button" class="layui-btn" id="test2">多图片上传</button>
             <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
                 <div class="layui-upload-list" id="demo2"></div>
