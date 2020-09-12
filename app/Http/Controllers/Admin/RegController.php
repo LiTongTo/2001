@@ -84,12 +84,12 @@ class RegController extends Controller
     }
 
 
-    public function edit($id){
+    public function redit($id){
         $data = Admin::find($id);
         return view('admin.reg.edit',['data'=>$data]);
     }
 
-    public function update(Request $request,$id){
+    public function rupdate(Request $request,$id){
         $data = $request->except('_token');
 
         $validatedData = $request->validate([

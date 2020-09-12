@@ -49,7 +49,7 @@
                     <td align='center'>{{date('Y-m-d h:i:s',$v->add_time)}}</td>
                     <td align='center'>
                         <div class="layui-btn-group">
-                            <a href="{{url('/admin/edit/'.$v->admin_id)}}" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
+                            <a href="{{url('/admin/redit/'.$v->admin_id)}}" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
                             <a href="javascript:void(0)" onclick="del({{$v->admin_id}},this)" class="layui-btn layui-btn-sm"><i class="layui-icon del"></i></a>
                             {{--<a href="{{url('/admin/delete/'.$v->admin_id)}}" class="layui-btn layui-btn-sm "><i class="layui-icon del"></i></a>--}}
 
