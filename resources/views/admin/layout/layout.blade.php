@@ -132,7 +132,7 @@ layui.use('upload', function(){
     ,done: function(res){
       layer.msg(res.msg);
       layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.result);
-      layui.$('input[name="brand_logo"]'&&'input[name="goods_img"]').attr('value',res.result);
+      layui.$('input[name="brand_logo"]'||'input[name="goods_img"]').attr('value',res.result);
     }
   });
 });

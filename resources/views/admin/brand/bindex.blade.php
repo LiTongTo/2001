@@ -151,9 +151,12 @@
             $('input[name="brandcheck[]"]:checked').each(function(i,k){
                 ids.push($(this).val());
             })
-            //console.log(ids)
+           
+            //return false;
             $.get('/admin/bdels',{brand_id:ids},function (res){
+                   //console.log(res);
                     if(res.code=='000000'){
+                       
                         location.href=res.url
                     }else{
                       console.log(res.message)
