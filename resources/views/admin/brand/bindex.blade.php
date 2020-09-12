@@ -129,9 +129,6 @@
                }else{
                  console.log('qvxiao')
                }
-             
-              
-              
           })
          //全选
         $(document).on('click','.layui-form-checkbox:first',function(){

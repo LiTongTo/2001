@@ -17,14 +17,14 @@ class BrandController extends Controller
      public function upload(Request $request){
 
          if ($request->hasFile('file') && $request->file('file')->isValid()) {
-          $photo = request()->file;
-          $store_result = $photo->store('uploads');
-          $data=env('UPLOADS_URL').$store_result;
-         // dd($data);
-           return json_encode(['code'=>0,'msg'=>'上传成功','result'=>$data]);
-     }
-           return json_encode(['code'=>1,'msg'=>'上传失败']);
-    }
+             $photo = request()->file;
+             $store_result = $photo->store('uploads');
+             $data = env('UPLOADS_URL') . $store_result;
+             // dd($data);
+             return json_encode(['code' => 0, 'msg' => '上传成功', 'result' => $data]);
+         }
+            return json_encode(['code'=>1,'msg'=>'上传失败']);
+         }
      #执行品牌添加
      public function bstore(Request $request)
      #表单验证2
@@ -96,7 +96,7 @@ class BrandController extends Controller
 
     #品牌执行修改
    public function bupdate(StoreBrandPost $request){
-        $brand_id=request()->brand_id;
+         $brand_id=request()->brand_id;
 
          $data=request()->except('file');
          $BrandModel=new Brand();

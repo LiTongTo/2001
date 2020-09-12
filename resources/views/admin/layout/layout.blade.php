@@ -51,9 +51,10 @@
         <li class="layui-nav-item ">
           <a class="" href="javascript:;">商品管理</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">商品添加</a></dd>
-            <dd><a href="javascript:;">商品列表</a></dd>
-            
+            <dd><a href="/admin/goods_add">商品添加</a></dd>
+            <dd><a href="/admin/goods_add_do">商品列表</a></dd>
+            <dd><a href="/admin/goods_imgs">商品相册</a></dd>
+            <dd><a href="/admin/goods_imgslist">相册列表</a></dd>
           </dl>
         </li>
        
@@ -73,6 +74,7 @@
             
           </dl>
          </li>
+
       </ul>
     </div>
   </div>
@@ -105,6 +107,25 @@ layui.use('upload', function(){
       layer.msg(res.msg);
       layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.result);
       layui.$('input[name="brand_logo"]').attr('value',res.result);
+    }
+  });
+
+  //多图片上传
+  upload.render({
+    elem: '#test2'
+    ,url: '/admin/goods_imgsdo' //改成您自己的上传接口
+    ,multiple: true
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+      //   $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+      });
+    }
+    ,done: function(res){
+      //上传完毕
+      layer.msg(res.msg);
+      $('#demo2').append('<img src="'+ res['result'] +'" alt="'+ res["result"] +'" class="layui-upload-img">')
+      $("#demo2").append('<input type="hidden" name="goods_imgs[]" value="'+res["result"]+'">');
     }
   });
 });

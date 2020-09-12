@@ -28,4 +28,12 @@ Route::prefix('/admin')->group(function(){
     Route::any('/jd','Admin\BrandController@jd');//即点即改
     Route::any('/bdel','Admin\BrandController@bdel');//删除
     Route::any('/bdels','Admin\BrandController@bdels');//批量删除
+
+    //多文件上传
+    Route::any('/goods_imgs','Admin\ImgsController@goods_imgs');
+    Route::any('/goods_imgsdo','Admin\ImgsController@goods_imgsdo');
+    Route::any('/imgsdo','Admin\ImgsController@imgsdo');
+    Route::any('/goods_imgslist','Admin\ImgsController@goods_imgslist');
+    Route::any('/img_del/{id?}','Admin\ImgsController@img_del');
+
 });
