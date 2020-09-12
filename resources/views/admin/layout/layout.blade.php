@@ -8,23 +8,17 @@
 
 </head>
 <body class="layui-layout-body">
+
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
+  <div style="padding-top:20px; margin-left:5px;">
+  <span class="layui-badge-dot"></span>
+  <span class="layui-badge-dot layui-bg-orange"></span>
+  <span class="layui-badge-dot layui-bg-green"></span>
+  <div>
     <a href="/admin/index"><div class="layui-logo">后台控制中心</div></a>
     <!-- 头部区域（可配合layui已有的水平导航） -->
-    <ul class="layui-nav layui-layout-left">
-      <li class="layui-nav-item"><a href="">控制台</a></li>
-      <li class="layui-nav-item"><a href="">商品管理</a></li>
-      <li class="layui-nav-item"><a href="">用户</a></li>
-      <li class="layui-nav-item">
-        <a href="javascript:;">其它系统</a>
-        <dl class="layui-nav-child">
-          <dd><a href="">邮件管理</a></dd>
-          <dd><a href="">消息管理</a></dd>
-          <dd><a href="">授权管理</a></dd>
-        </dl>
-      </li>
-    </ul>
+    
     @if(session('login')=='')
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
@@ -33,7 +27,6 @@
         </a>
 
       </li>
-
     </ul>
     @else
       <ul class="layui-nav layui-layout-right">
@@ -48,13 +41,14 @@
         </li>
         <li class="layui-nav-item"><a href="/admin/quit/">退出</a></li>
       </ul>
-    @endif
+     
+     @endif
   </div>
 
   <div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-
+      @if(session('login')->admin_name=='admin')
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
       @php $name=Route::currentRouteName();@endphp
 
@@ -107,6 +101,48 @@
 
 
       </ul>
+     @else
+     <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+      @php $name=Route::currentRouteName();@endphp
+
+        <!--layui-nav-itemed-->
+        <li @if(strpos($name,'goods')!==false || strpos($name,'imgslist')!==false ) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
+          <a class="" href="javascript:;">商品管理</a>
+          <dl class="layui-nav-child">
+
+            <dd @if($name=='goods.create') class='layui-this' @endif><a href="/admin/goods">商品添加</a></dd>
+            <dd @if($name=='goods') class='layui-this' @endif ><a href="/admin/gindex">商品列表</a></dd>
+            <dd @if($name=='goods.imgs') class='layui-this' @endif><a href="/admin/goods_imgs">商品相册</a></dd>
+            <dd @if($name=='imgslist') class='layui-this' @endif><a href="/admin/goods_imgslist">相册列表</a></dd>
+
+          </dl>
+        </li>
+
+        <li @if(strpos($name,'brand')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
+            <a href="javascript:;">品牌管理</a>
+            <dl class="layui-nav-child">
+            <dd @if($name=='brand.create') class='layui-this'@endif><a href="/admin/brand">品牌添加</a></dd>
+            <dd @if($name=='brand') class='layui-this'@endif><a href="/admin/bindex">品牌列表</a></dd>
+
+          </dl>
+        </li>
+
+         <li @if(strpos($name,'cate')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
+            <a href="javascript:;">分类管理</a>
+            <dl class="layui-nav-child">
+
+
+
+
+            <dd @if($name=='cate.create') class='layui-this'@endif><a href="/admin/cate">分类添加</a></dd>
+            <dd @if($name=='cate') class='layui-this'@endif><a href="/admin/cate_index">分类列表</a></dd>
+
+
+          </dl>
+        </li>
+         </li>
+      </ul>
+     @endif
     </div>
   </div>
   <div class="layui-body">
@@ -115,9 +151,13 @@
   </div>
   <div class="layui-footer">
     <!-- 底部固定区域 -->
-    © layui.com - 底部固定区域
+    © 后台 - 底部固定区域
   </div>
 </div>
+
+
+
+
 <script src="/static/layui.js"></script>
 <script>
 //JavaScript代码区域

@@ -36,7 +36,7 @@ Route::prefix('/admin')->group(function(){
     Route::any('/imgsdo','Admin\ImgsController@imgsdo');
     Route::any('/goods_imgslist','Admin\ImgsController@goods_imgslist')->name('imgslist');
     Route::any('/img_del/{id?}','Admin\ImgsController@img_del');
-
+    Route::any('/imgedit/{id}','Admin\ImgsController@imgedit');
    // ****************************************************************
     Route::any('goods','Admin\GoodsController@goods')->middleware('islog')->name('goods.create');//添加页面
     Route::any('store','Admin\GoodsController@store');
@@ -64,7 +64,7 @@ Route::prefix('/admin')->group(function(){
     Route::any('/redit/{admin_id}','Admin\RegController@redit');
     Route::any('/rupdate/{admin_id}','Admin\RegController@rupdate');
     Route::any('/quit/','Admin\RegController@quit');
-
+    
 
 
 });

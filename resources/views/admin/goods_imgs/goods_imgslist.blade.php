@@ -31,7 +31,7 @@
             @foreach($data as $v)
                 <tr>
                     <td>{{$v->id}}</td>
-                    <td>{{$v->goods_id}}</td>
+                    <td>{{$v->goods_name}}</td>
                     <td>
                         @php $goods_imgs = explode("|",$v->goods_imgs);@endphp
                         @foreach($goods_imgs as $vv)
@@ -41,7 +41,7 @@
                     </td>
                     <td align='center'>
                         <div class="layui-btn-group">
-                            <a href='/admin/bedit/{{$v->id}}' class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
+                            <a href='/admin/imgedit/{{$v->id}}' class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
                             <a imgs_id="{{$v->id}}" class="layui-btn layui-btn-sm del "><i class="layui-icon "></i></a>
 
                         </div>

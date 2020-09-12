@@ -4,7 +4,7 @@
     <span class="layui-breadcrumb" >
   <a href="/admin/index">首页</a>
   <a href="javascript:;">商品相册管理</a>
-  <a><cite>商品相册添加</cite></a>
+  <a><cite>商品相册修改</cite></a>
 </span>
     @if ($errors->any())
         <div class="alert alert-danger" style=' margin-top:20px;padding-left:20px;padding-top:10px;padding-bottom:10px; background-color:pink;'>
@@ -23,7 +23,11 @@
                 <select name="goods_id">
                   <option value="">请选择</option>
                    @foreach($data as $k=>$v)
-                       <option value="{{$v->goods_id}}">{{$v->goods_name}}</option>
+                       @if($v->goods_id==$reg->goods_id)
+                       <option value="{{$v->goods_id}}"  selected>{{$v->goods_name}}</option>
+                       @else
+                       <option value="{{$v->goods_id}}" >{{$v->goods_name}}</option>
+                       @endif
                     @endforeach
                 </select>
             </div>
@@ -33,7 +37,13 @@
        
             <button type="button" class="layui-btn" id="test2">多图片上传</button>
             <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
-                <div class="layui-upload-list" id="demo2"></div>
+                <div class="layui-upload-list" id="demo2">
+                @php $goods_imgs=explode('|',$reg->goods_imgs);@endphp
+                   @foreach($goods_imgs as $k=>$v)
+                   <img src="{{$v}}" alt=""/>
+                   @endforeach
+                </div>
+                
             </blockquote>
 
         </div>

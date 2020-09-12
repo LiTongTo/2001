@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Gimgs;
+use App\Models\Goods;
 use DB;
 
 
@@ -13,7 +14,10 @@ class ImgsController extends Controller
     //添加相册视图
     public function goods_imgs()
     {
-        return view('admin.goods_imgs.goods_add');
+        $GoodsModel=new Goods();
+        $data=$GoodsModel->where('is_del',1)->get();
+        //dd($data);
+        return view('admin.goods_imgs.goods_add',['data'=>$data]);
     }
 
     //相册图片处理
@@ -33,6 +37,7 @@ class ImgsController extends Controller
     //处理图片添加
     public function imgsdo(){
         $data=request()->all();
+        //dd($data);
         $data['goods_imgs']=implode('|',$data['goods_imgs']);
         $goods = new Gimgs();
         $post = $goods->create($data);
@@ -43,7 +48,8 @@ class ImgsController extends Controller
     //相册展示
     public function  goods_imgslist(request $request)
     {
-       $data = DB::table('gimgs')->where('is_del',1)->paginate(2);
+       $data = DB::table('gimgs')->leftjoin('goods','gimgs.goods_id','goods.goods_id')->where('gimgs.is_del',1)->paginate(2);
+       
        //dd($data);
         return view('admin.goods_imgs.goods_imgslist',['data'=>$data]);
     }
@@ -70,7 +76,22 @@ class ImgsController extends Controller
 
             ];
             return json_encode($message,JSON_UNESCAPED_UNICODE);
-        }
+        }  
+        
     }
+    
+    //修改
+    public function imgedit($id){
+        $GoodsModel=new Goods();
+        $data=$GoodsModel->where('is_del',1)->get();
+         $GimgsModels=new Gimgs();
+         $where=[
+             'is_del'=>1,
+             'id'=>$id
+         ];
+         $reg=$GimgsModels->where($where)->first();
+         return view('admin.goods_imgs.edit',['data'=>$data,'reg'=>$reg]);
+    }
+   
 
 }

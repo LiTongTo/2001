@@ -18,7 +18,7 @@ class IsLogin
         $data=session('login');
         //dd($data);
         if(empty($data)){
-            return redirect('/admin/reg')->with('msg','请先登录');
+            return redirect('/admin/reg')->with('msg','请先登录！');
         }
         return $next($request);
     }
