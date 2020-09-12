@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>@yield('title')</title>
   <link rel="stylesheet" href="/static/css/layui.css">
- 
+
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -39,30 +39,30 @@
       <li class="layui-nav-item"><a href="">退出</a></li>
     </ul>
   </div>
-  
+
   <div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-     
+
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
       @php $name=Route::currentRouteName();@endphp
-      
+
         <!--layui-nav-itemed-->
         <li class="layui-nav-item ">
           <a class="" href="javascript:;">商品管理</a>
           <dl class="layui-nav-child">
             <dd><a href="javascript:;">商品添加</a></dd>
             <dd><a href="javascript:;">商品列表</a></dd>
-            
+
           </dl>
         </li>
-       
+
         <li @if(strpos($name,'brand')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
             <a href="javascript:;">品牌管理</a>
             <dl class="layui-nav-child">
             <dd @if($name=='brand.create') class='layui-this'@endif><a href="/admin/brand">品牌添加</a></dd>
             <dd @if($name=='brand') class='layui-this'@endif><a href="/admin/bindex">品牌列表</a></dd>
-            
+
           </dl>
         </li>
         <li class="layui-nav-item">
@@ -70,7 +70,7 @@
             <dl class="layui-nav-child">
             <dd><a href="/admin/brand">分类添加</a></dd>
             <dd><a href="/admin/bindex">分类列表</a></dd>
-            
+
           </dl>
          </li>
       </ul>
@@ -92,7 +92,7 @@
 
 layui.use('element', function(){
   var element = layui.element;
-  
+
 });
 
 layui.use('upload', function(){
@@ -104,14 +104,14 @@ layui.use('upload', function(){
     ,done: function(res){
       layer.msg(res.msg);
       layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.result);
-      layui.$('input[name="brand_logo"]').attr('value',res.result);
+      layui.$('input[name="brand_logo"]'&&'input[name="goods_img"]').attr('value',res.result);
     }
   });
 });
 
 layui.use('form', function(){
   var form = layui.form;
-  
+
   //各种基于事件的操作，下面会有进一步介绍
 });
 

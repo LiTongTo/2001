@@ -28,4 +28,13 @@ Route::prefix('/admin')->group(function(){
     Route::any('/jd','Admin\BrandController@jd');//即点即改
     Route::any('/bdel','Admin\BrandController@bdel');//删除
     Route::any('/bdels','Admin\BrandController@bdels');//批量删除
+   // ****************************************************************
+    Route::any('goods','Admin\GoodsController@goods');//添加页面
+    Route::any('store','Admin\GoodsController@store');
+    Route::any('gindex','Admin\GoodsController@gindex');
+    Route::any('del','Admin\GoodsController@del');//删除
+    Route::any('update/{id}','Admin\GoodsController@update');//修改
+    Route::any('jidian','Admin\GoodsController@jidian');
+    Route::any('edit','Admin\GoodsController@edit');
+
 });
