@@ -2,7 +2,7 @@
 @section('title','管理员添加添加 ')
 @section('content')
     <h1><center>修改管理员</center></h1>
-    <form class="layui-form" action="{{url('/admin/update/'.$data->admin_id)}}" method="post" lay-filter="example">
+    <form class="layui-form" action="{{url('/admin/rupdate/'.$data->admin_id)}}" method="post" lay-filter="example">
         <div class="layui-form-item">
             <label class="layui-form-label">管理员名称</label>
             <div class="layui-input-block">

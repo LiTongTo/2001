@@ -53,8 +53,8 @@ Route::prefix('/admin')->group(function(){
     Route::any('/store','Admin\RegController@store');
     Route::any('/list','Admin\RegController@index')->name('user');
     Route::any('/delete/{brand_id}','Admin\RegController@delete');
-    Route::any('/edit/{admin_id}','Admin\RegController@edit');
-    Route::any('/update/{admin_id}','Admin\RegController@update');
+    Route::any('/redit/{admin_id}','Admin\RegController@redit');
+    Route::any('/rupdate/{admin_id}','Admin\RegController@rupdate');
     Route::any('/quit/','Admin\RegController@quit');
 
 
