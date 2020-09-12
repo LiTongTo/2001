@@ -59,11 +59,11 @@
       @php $name=Route::currentRouteName();@endphp
 
         <!--layui-nav-itemed-->
-        <li class="layui-nav-item ">
+        <li @if(strpos($name,'goods')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
           <a class="" href="javascript:;">商品管理</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">商品添加</a></dd>
-            <dd><a href="javascript:;">商品列表</a></dd>
+            <dd @if($name=='goods.create') class='layui-this' @endif><a href="/admin/goods">商品添加</a></dd>
+            <dd @if($name=='goods') class='layui-this' @endif ><a href="/admin/gindex">商品列表</a></dd>
 
           </dl>
         </li>
