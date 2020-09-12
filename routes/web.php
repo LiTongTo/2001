@@ -29,6 +29,14 @@ Route::prefix('/admin')->group(function(){
     Route::any('/bdel','Admin\BrandController@bdel');//删除
     Route::any('/bdels','Admin\BrandController@bdels');//批量删除
 
+
+    //多文件上传
+    Route::any('/goods_imgs','Admin\ImgsController@goods_imgs')->name('goods.imgs');
+    Route::any('/goods_imgsdo','Admin\ImgsController@goods_imgsdo');
+    Route::any('/imgsdo','Admin\ImgsController@imgsdo');
+    Route::any('/goods_imgslist','Admin\ImgsController@goods_imgslist')->name('imgslist');
+    Route::any('/img_del/{id?}','Admin\ImgsController@img_del');
+
    // ****************************************************************
     Route::any('goods','Admin\GoodsController@goods')->middleware('islog')->name('goods.create');//添加页面
     Route::any('store','Admin\GoodsController@store');
@@ -56,6 +64,7 @@ Route::prefix('/admin')->group(function(){
     Route::any('/redit/{admin_id}','Admin\RegController@redit');
     Route::any('/rupdate/{admin_id}','Admin\RegController@rupdate');
     Route::any('/quit/','Admin\RegController@quit');
+
 
 
 });
