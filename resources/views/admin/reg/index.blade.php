@@ -4,8 +4,26 @@
     <span class="layui-breadcrumb" >
   <a href="/admin/index">首页</a>
   <a href="javascript:;">管理员管理</a>
-
 </span>
+
+
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+
+                <div class="layui-input-inline">
+                    <input type="tel" name="admin_name" value="{{$data['admin_name']??''}}" placeholder="请输入管理员名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-inline">
+
+                <div class="layui-input-inline">
+                    <button class="layui-btn layui-btn-normal">搜索</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
     <div class="layui-form">
         <table class="layui-table">
