@@ -2,7 +2,7 @@
 @section('title','管理员添加添加 ')
 @section('content')
 <h1><center>添加管理员</center></h1>
-<form class="layui-form" action="{{url('/admin/store')}}" method="post" lay-filter="example">
+<form class="layui-form" action="{{url('/admin/rstore')}}" method="post" lay-filter="example">
     @if ($errors->any())
         <div class="alert alert-danger" style="padding-bottom: 20px;padding-left: 20px">
             <ul>
