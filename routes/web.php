@@ -29,6 +29,16 @@ Route::prefix('/admin')->group(function(){
     Route::any('/bdel','Admin\BrandController@bdel');//删除
     Route::any('/bdels','Admin\BrandController@bdels');//批量删除
 
+   // ****************************************************************
+    Route::any('goods','Admin\GoodsController@goods')->name('goods.create');//添加页面
+    Route::any('store','Admin\GoodsController@store');
+    Route::any('gindex','Admin\GoodsController@gindex')->name('goods');
+    Route::any('del','Admin\GoodsController@del');//删除
+    Route::any('update/{id}','Admin\GoodsController@update');//修改
+    Route::any('jidian','Admin\GoodsController@jidian');
+    Route::any('edit','Admin\GoodsController@edit');
+
+
     Route::any('/cate','Admin\CateController@cate')->name('cate.create');//分类添加
     Route::any('/cate_add','Admin\CateController@cate_add');//分类添加
     Route::any('/cate_index','Admin\CateController@cate_index')->name('cate');//分类添加
@@ -46,6 +56,7 @@ Route::prefix('/admin')->group(function(){
     Route::any('/edit/{admin_id}','Admin\RegController@edit');
     Route::any('/update/{admin_id}','Admin\RegController@update');
     Route::any('/quit/','Admin\RegController@quit');
+
 
 });
 
