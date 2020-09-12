@@ -39,6 +39,9 @@
     <script>
         $(document).on("click",".ban",function(){
             var cate_name = $("input[name='cate_name']").val();
+            if(cate_name==""){
+              alert("分类不能为空");return;
+            }
             var parent_id = $("select[name='parent_id']").val();
             var data = {};
             data.cate_name = cate_name;
@@ -51,6 +54,9 @@
                 datetype:"json",
                 success:function(res){
                     // console.log(res);
+                    if(res.error==true){
+                      alert(res.message);
+                    }
                     if(res.success==true){
                     alert(res.message);
                         location.href="{{url('/admin/cate_index')}}";

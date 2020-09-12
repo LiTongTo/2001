@@ -30,9 +30,9 @@ Route::prefix('/admin')->group(function(){
     Route::any('/bdels','Admin\BrandController@bdels');//批量删除
 
    // ****************************************************************
-    Route::any('goods','Admin\GoodsController@goods');//添加页面
+    Route::any('goods','Admin\GoodsController@goods')->name('goods.create');//添加页面
     Route::any('store','Admin\GoodsController@store');
-    Route::any('gindex','Admin\GoodsController@gindex');
+    Route::any('gindex','Admin\GoodsController@gindex')->name('goods');
     Route::any('del','Admin\GoodsController@del');//删除
     Route::any('update/{id}','Admin\GoodsController@update');//修改
     Route::any('jidian','Admin\GoodsController@jidian');

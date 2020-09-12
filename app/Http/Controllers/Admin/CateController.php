@@ -14,6 +14,14 @@ class CateController extends Controller
     }
     public function cate_add(){
         $data = request()->all();
+        $info = Cate::where("cate_name",$data['cate_name'])->first();
+        if($info){
+            return $message = [
+                "code"=>00001,
+                "message"=>"已有此分类",
+                "error"=>true,
+            ];die;
+        }
         $data = [
             "cate_name"=>$data['cate_name'],
             "parent_id"=>$data['parent_id'],
