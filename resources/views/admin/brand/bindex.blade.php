@@ -9,11 +9,11 @@
 <form class="layui-form" style="padding-bottom: 10px; padding-top:15px;padding-left: 10px;">
             品牌名称：
             <div class="layui-input-inline">
-                <input type="text" name="brand_name"  class="layui-input" value="{{$brand['brand_name']}}" placeholder="请输入品牌名称......">
+                <input type="text" name="brand_name"  class="layui-input" value="{{$brand['brand_name']??''}}" placeholder="请输入品牌名称......">
             </div>
             品牌网址：
             <div class="layui-input-inline">
-                <input type="text" name="brand_url" class="layui-input" value="{{$brand['brand_url']}}" placeholder="请输入品牌网址......">
+                <input type="text" name="brand_url" class="layui-input" value="{{$brand['brand_url']??''}}" placeholder="请输入品牌网址......">
             </div>
             <button type="submit" class="layui-btn">搜索</button>
     </form>
@@ -129,6 +129,9 @@
                }else{
                  console.log('qvxiao')
                }
+             
+              
+              
           })
          //全选
         $(document).on('click','.layui-form-checkbox:first',function(){

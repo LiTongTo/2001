@@ -59,18 +59,14 @@
       @php $name=Route::currentRouteName();@endphp
 
         <!--layui-nav-itemed-->
-        <li @if(strpos($name,'goods')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
+        <li @if(strpos($name,'goods')!==false || strpos($name,'imgslist')!==false ) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
           <a class="" href="javascript:;">商品管理</a>
           <dl class="layui-nav-child">
 
-            <dd><a href="/admin/goods_add">商品添加</a></dd>
-            <dd><a href="/admin/goods_add_do">商品列表</a></dd>
-            <dd><a href="/admin/goods_imgs">商品相册</a></dd>
-            <dd><a href="/admin/goods_imgslist">相册列表</a></dd>
-
             <dd @if($name=='goods.create') class='layui-this' @endif><a href="/admin/goods">商品添加</a></dd>
             <dd @if($name=='goods') class='layui-this' @endif ><a href="/admin/gindex">商品列表</a></dd>
-
+            <dd @if($name=='goods.imgs') class='layui-this' @endif><a href="/admin/goods_imgs">商品相册</a></dd>
+            <dd @if($name=='imgslist') class='layui-this' @endif><a href="/admin/goods_imgslist">相册列表</a></dd>
 
           </dl>
         </li>
