@@ -59,7 +59,13 @@ class RegController extends Controller
     }
 
     public function index(){
-        $data = Admin::where('is_del',1)->orderBy('admin_id','desc')->paginate(2);
+        $admin_name = request()->admin_name;
+        $where = [];
+        if($admin_name){
+            $where[] = ['admin_name','like',"%$admin_name%"];
+        }
+        $where[]=['is_del',1];
+        $data = Admin::where($where)->orderBy('admin_id','desc')->paginate(2);
         return view('admin.reg.index',['data'=>$data]);
     }
 
