@@ -9,11 +9,11 @@
 <form class="layui-form" style="padding-bottom: 10px; padding-top:15px;padding-left: 10px;">
             品牌名称：
             <div class="layui-input-inline">
-                <input type="text" name="brand_name"  class="layui-input" value="{{$brand['brand_name']??''}}" placeholder="请输入品牌名称......">
+                <input type="text" name="brand_name"  class="layui-input" value="{{$brand['brand_name']}}" placeholder="请输入品牌名称......">
             </div>
             品牌网址：
             <div class="layui-input-inline">
-                <input type="text" name="brand_url" class="layui-input" value="{{$brand['brand_url']??''}}" placeholder="请输入品牌网址......">
+                <input type="text" name="brand_url" class="layui-input" value="{{$brand['brand_url']}}" placeholder="请输入品牌网址......">
             </div>
             <button type="submit" class="layui-btn">搜索</button>
     </form>
@@ -148,16 +148,19 @@
             $('input[name="brandcheck[]"]:checked').each(function(i,k){
                 ids.push($(this).val());
             })
-            //console.log(ids)
+           
+            //return false;
             $.get('/admin/bdels',{brand_id:ids},function (res){
-              if(res.code=='000000'){
-                            // location.href=reg['url'];
-                             window.location.reload();
-                           }else{
-                               alert('reg.message');
-                           }
-               
-            })
+                   //console.log(res);
+                    if(res.code=='000000'){
+                       
+                        location.href=res.url
+                    }else{
+                      console.log(res.message)
+                    }
+            },
+               'json'
+            )
         })
 
          //ajax分页

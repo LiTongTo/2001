@@ -15,8 +15,10 @@ class BrandController extends Controller
      }
      #文件上传
      public function upload(Request $request){
-
+        $data = $request->file;
+        // dd($data);
          if ($request->hasFile('file') && $request->file('file')->isValid()) {
+
              $photo = request()->file;
              $store_result = $photo->store('uploads');
              $data = env('UPLOADS_URL') . $store_result;
@@ -25,6 +27,17 @@ class BrandController extends Controller
          }
             return json_encode(['code'=>1,'msg'=>'上传失败']);
          }
+
+          $photo = request()->file;
+          $store_result = $photo->store('uploads');
+          $data='/'.$store_result;
+       
+         //dd($data);
+           return json_encode(['code'=>0,'msg'=>'上传成功','result'=>$data]);
+     }
+           return json_encode(['code'=>1,'msg'=>'上传失败']);
+    }
+
      #执行品牌添加
      public function bstore(Request $request)
      #表单验证2
@@ -63,6 +76,7 @@ class BrandController extends Controller
 
         $BrandModel=new Brand();
         $res=$BrandModel->create($data);
+       // dd($res);
         if($res){
             return redirect('/admin/bindex');
         }
@@ -80,7 +94,7 @@ class BrandController extends Controller
         }
 
         $BrandModel=new Brand();
-        $data=$BrandModel->where('is_del',1)->where($where)->orderBy('brand_id','desc')->paginate(5);
+        $data=$BrandModel->where('is_del',1)->where($where)->orderBy('brand_id','desc')->paginate(2);
         if(request()->ajax()){
            return view('admin.brand.ajaxpage',['data'=>$data,'query'=>request()->all()]);
         }
@@ -173,6 +187,7 @@ class BrandController extends Controller
     #批量删除
     public function bdels(){
         $brand_id=request()->brand_id;
+        //dd($brand_id);
         foreach($brand_id as $k=>$v){
             $BrandModel=new Brand();
             $reg=$BrandModel->where('brand_id',$v)->update(['is_del'=>2]);

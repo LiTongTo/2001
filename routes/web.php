@@ -29,6 +29,7 @@ Route::prefix('/admin')->group(function(){
     Route::any('/bdel','Admin\BrandController@bdel');//删除
     Route::any('/bdels','Admin\BrandController@bdels');//批量删除
 
+
     //多文件上传
     Route::any('/goods_imgs','Admin\ImgsController@goods_imgs');
     Route::any('/goods_imgsdo','Admin\ImgsController@goods_imgsdo');
@@ -36,4 +37,35 @@ Route::prefix('/admin')->group(function(){
     Route::any('/goods_imgslist','Admin\ImgsController@goods_imgslist');
     Route::any('/img_del/{id?}','Admin\ImgsController@img_del');
 
+   // ****************************************************************
+    Route::any('goods','Admin\GoodsController@goods')->name('goods.create');//添加页面
+    Route::any('store','Admin\GoodsController@store');
+    Route::any('gindex','Admin\GoodsController@gindex')->name('goods');
+    Route::any('del','Admin\GoodsController@del');//删除
+    Route::any('update/{id}','Admin\GoodsController@update');//修改
+    Route::any('jidian','Admin\GoodsController@jidian');
+    Route::any('edit','Admin\GoodsController@edit');
+
+
+    Route::any('/cate','Admin\CateController@cate')->name('cate.create');//分类添加
+    Route::any('/cate_add','Admin\CateController@cate_add');//分类添加
+    Route::any('/cate_index','Admin\CateController@cate_index')->name('cate');//分类添加
+    Route::any('/cate_del','Admin\CateController@cate_del');//分类添加
+    Route::any('/jdjg','Admin\CateController@jdjg');//分类添加
+
+
+    Route::any('/reg','Admin\RegController@reg');
+    Route::any('/regdo','Admin\RegController@regdo');
+    Route::any('/imageCode','Admin\RegController@imageCode');
+    Route::any('/create','Admin\RegController@create')->name('user.create');
+    Route::any('/store','Admin\RegController@store');
+    Route::any('/list','Admin\RegController@index')->name('user');
+    Route::any('/delete/{brand_id}','Admin\RegController@delete');
+    Route::any('/redit/{admin_id}','Admin\RegController@redit');
+    Route::any('/rupdate/{admin_id}','Admin\RegController@rupdate');
+    Route::any('/quit/','Admin\RegController@quit');
+
+
+
 });
+

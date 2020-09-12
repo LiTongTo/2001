@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>@yield('title')</title>
   <link rel="stylesheet" href="/static/css/layui.css">
- 
+
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <div class="layui-logo">后台控制中心</a></div>
+    <a href="/admin/index"><div class="layui-logo">后台控制中心</div></a>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
       <li class="layui-nav-item"><a href="">控制台</a></li>
@@ -25,55 +25,90 @@
         </dl>
       </li>
     </ul>
+    @if(session('login')=='')
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
-        <a href="javascript:;">
-          <img src="http://img.2001.com/uploads/wcwMr3gVOzdajl2pqehre4VQqPj6vGD1JwagPYFJ.jpeg" class="layui-nav-img">
-          蓝山夏
+        <a href="/admin/reg">
+          登录
         </a>
-        <dl class="layui-nav-child">
-          <dd><a href="">基本资料</a></dd>
-          <dd><a href="">安全设置</a></dd>
-        </dl>
+
       </li>
-      <li class="layui-nav-item"><a href="">臣退了</a></li>
+
     </ul>
+    @else
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+           欢迎 @php echo session('login')->admin_name;@endphp
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="">基本资料</a></dd>
+            <dd><a href="">安全设置</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="/admin/quit/">退出</a></li>
+      </ul>
+    @endif
   </div>
-  
+
   <div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-     
+
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
       @php $name=Route::currentRouteName();@endphp
-      
+
         <!--layui-nav-itemed-->
-        <li class="layui-nav-item ">
+        <li @if(strpos($name,'goods')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
           <a class="" href="javascript:;">商品管理</a>
           <dl class="layui-nav-child">
+
             <dd><a href="/admin/goods_add">商品添加</a></dd>
             <dd><a href="/admin/goods_add_do">商品列表</a></dd>
             <dd><a href="/admin/goods_imgs">商品相册</a></dd>
             <dd><a href="/admin/goods_imgslist">相册列表</a></dd>
+
+            <dd @if($name=='goods.create') class='layui-this' @endif><a href="/admin/goods">商品添加</a></dd>
+            <dd @if($name=='goods') class='layui-this' @endif ><a href="/admin/gindex">商品列表</a></dd>
+
+
           </dl>
         </li>
-       
+
         <li @if(strpos($name,'brand')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
             <a href="javascript:;">品牌管理</a>
             <dl class="layui-nav-child">
             <dd @if($name=='brand.create') class='layui-this'@endif><a href="/admin/brand">品牌添加</a></dd>
             <dd @if($name=='brand') class='layui-this'@endif><a href="/admin/bindex">品牌列表</a></dd>
-            
+
           </dl>
         </li>
-        <li class="layui-nav-item">
-                 <a href="">分类管理</a>
+
+         <li @if(strpos($name,'cate')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
+            <a href="javascript:;">分类管理</a>
             <dl class="layui-nav-child">
-            <dd><a href="/admin/brand">分类添加</a></dd>
-            <dd><a href="/admin/bindex">分类列表</a></dd>
-            
+
+
+
+
+            <dd @if($name=='cate.create') class='layui-this'@endif><a href="/admin/cate">分类添加</a></dd>
+            <dd @if($name=='cate') class='layui-this'@endif><a href="/admin/cate_index">分类列表</a></dd>
+
+
           </dl>
+        </li>
          </li>
+
+
+        <li @if(strpos($name,'user')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
+          <a href="javscript:;">管理员管理</a>
+          <dl class="layui-nav-child">
+            <dd @if($name=='user.create') class='layui-this'@endif><a href="/admin/create">管理员添加</a></dd>
+            <dd @if($name=='user') class='layui-this'@endif><a href="/admin/list">管理员列表</a></dd>
+
+          </dl>
+        </li>
+
 
       </ul>
     </div>
@@ -94,7 +129,7 @@
 
 layui.use('element', function(){
   var element = layui.element;
-  
+
 });
 
 layui.use('upload', function(){
@@ -102,11 +137,11 @@ layui.use('upload', function(){
     //拖拽上传
   upload.render({
     elem: '#test10'
-    ,url: 'http://2001.com/admin/upload' //改成您自己的上传接口
+    ,url: '/admin/upload' //改成您自己的上传接口
     ,done: function(res){
       layer.msg(res.msg);
       layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.result);
-      layui.$('input[name="brand_logo"]').attr('value',res.result);
+      layui.$('input[name="brand_logo"]'||'input[name="goods_img"]').attr('value',res.result);
     }
   });
 
@@ -132,7 +167,7 @@ layui.use('upload', function(){
 
 layui.use('form', function(){
   var form = layui.form;
-  
+
   //各种基于事件的操作，下面会有进一步介绍
 });
 
