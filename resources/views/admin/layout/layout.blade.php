@@ -177,8 +177,23 @@ layui.use('upload', function(){
     ,done: function(res){
       layer.msg(res.msg);
       layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.result);
-      layui.$('input[name="brand_logo"]'||'input[name="goods_img"]').attr('value',res.result);
+    
+        layui.$('input[name="brand_logo"]').attr('value',res.result);
     }
+
+  
+  });
+
+  upload.render({
+    elem: '#test8'
+    ,url: '/admin/uploads' //改成您自己的上传接口
+    ,done: function(res){
+      layer.msg(res.msg);
+      layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.result);
+      layui.$('input[name="goods_img"]').attr('value',res.result);
+    }
+
+  
   });
 
   //多图片上传
@@ -195,7 +210,7 @@ layui.use('upload', function(){
     ,done: function(res){
       //上传完毕
       layer.msg(res.msg);
-      $('#demo2').append('<img src="'+ res['result'] +'" alt="'+ res["result"] +'" class="layui-upload-img">')
+      $('#demo2').append('<img src="'+ res['result'] +'" alt="'+ res["result"] +'" class="layui-upload-img" width="50px">')
       $("#demo2").append('<input type="hidden" name="goods_imgs[]" value="'+res["result"]+'">');
     }
   });

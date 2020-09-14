@@ -92,6 +92,17 @@ class ImgsController extends Controller
          $reg=$GimgsModels->where($where)->first();
          return view('admin.goods_imgs.edit',['data'=>$data,'reg'=>$reg]);
     }
+
+    //修改执行
+    public function upddo($id){
+        // echo $id;
+        $arr = request()->except("file");
+        $arr['goods_imgs']=implode('|',$arr['goods_imgs']);
+        // dd($arr);
+        $GimgsModel=new Gimgs();
+        $data=$GimgsModel->where('id',$id)->update($arr);
+        return redirect('/admin/goods_imgslist');
+    }
    
 
 }

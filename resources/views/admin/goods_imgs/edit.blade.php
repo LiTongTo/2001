@@ -15,7 +15,7 @@
             </ul>
         </div>
     @endif
-    <form class="layui-form" action="/admin/imgsdo" method='post' style="margin-top:20px;">
+    <form class="layui-form" action="/admin/upddo/{{$reg->id}}" method='post' style="margin-top:20px;">
 
         <div class="layui-form-item" style="margin-left: -10px;">
             <label class="layui-form-label">商品名称</label>
@@ -40,7 +40,7 @@
                 <div class="layui-upload-list" id="demo2">
                 @php $goods_imgs=explode('|',$reg->goods_imgs);@endphp
                    @foreach($goods_imgs as $k=>$v)
-                   <img src="{{$v}}" alt=""/>
+                   <img src="{{$v}}" width="50px"/>
                    @endforeach
                 </div>
                 
@@ -50,6 +50,6 @@
 
 
 
-        <button type="submit" style="margin-left:100px; margin-top:20px;" class="layui-btn">添加</button>
+        <button type="submit" style="margin-left:100px; margin-top:20px;" class="layui-btn">修改</button>
     </form>
 @endsection

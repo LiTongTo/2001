@@ -22,11 +22,26 @@ class GoodsController extends Controller
         $brand_data = Brand::get();
         return view('admin.goods.goods',['data'=>$data,'brand_data'=>$brand_data]);
     }
+      #文件上传
+      public function uploads(Request $request){
+        $data = $request->file;
+        
+         if ($request->hasFile('file') && $request->file('file')->isValid()) {
+          $photo = request()->file;
+          $store_result = $photo->store('uploads');
+          $data='/'.$store_result;
+       
+         //dd($data);
+           return json_encode(['code'=>0,'msg'=>'上传成功','result'=>$data]);
+     }
+           return json_encode(['code'=>1,'msg'=>'上传失败']);
+    }
 
     public function store(Request $request)
     {
 //        dd('www');
         $post = $request->except(['_token']);
+        //dd($post);
         $GoodsModel = new Goods();
         $res = $GoodsModel->create($post);
         //dd($res);exit;

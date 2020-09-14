@@ -65,7 +65,7 @@
                 </tr>
             @endforeach
             <tr>
-           <td colspan="6px">{{$data->links('vendor.pagination.adminshop')}}
+              <td colspan="14">{{$data->links('vendor.pagination.adminshop')}}
            </td>
        </tr>
             </tbody>

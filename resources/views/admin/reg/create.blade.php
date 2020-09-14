@@ -1,8 +1,13 @@
 @extends('admin.layout.layout')
 @section('title','管理员添加添加 ')
 @section('content')
-<h1><center>添加管理员</center></h1>
-<form class="layui-form" action="{{url('/admin/rstore')}}" method="post" lay-filter="example">
+<span class="layui-breadcrumb"  >
+  <a href="/admin/index">首页</a>
+  <a href="javascript:;">管理员管理</a>
+  <a href="javascript:;">管理员添加</a>
+</span>
+
+<form class="layui-form" action="{{url('/admin/rstore')}}" method="post" lay-filter="example" style="margin-top:20px;" >
     @if ($errors->any())
         <div class="alert alert-danger" style="padding-bottom: 20px;padding-left: 20px">
             <ul>

@@ -72,7 +72,7 @@
             $('button[type="submit"]').prop('disabled','disabled');
             return false;
         }else{
-            $('span[name="admin_name"]').html('<span style="color: green;">格式正确</span>')
+            $('span[name="admin_name"]').html('<span style="color: green;">已填写</span>')
             $('button[type="submit"]').prop('disabled',''); 
         }
     });
@@ -84,7 +84,7 @@
                 $('button[type="submit"]').prop('disabled','disabled');
                 return false;
             }else{
-              $('span[name="admin_pwd"]').html('<span style="color: green;">格式正确</span>')
+              $('span[name="admin_pwd"]').html('<span style="color: green;">已填写</span>')
               $('button[type="submit"]').prop('disabled',''); 
             }
 
@@ -98,7 +98,7 @@
                 $('button[type="submit"]').prop('disabled','disabled');
                 return false;
             }else{
-                $('span[name="code"]').html('<span style="color:green;">格式正确</span>')
+                $('span[name="code"]').html('<span style="color:green;">已填写</span>')
                 $('button[type="submit"]').prop('disabled',''); 
             }
 
