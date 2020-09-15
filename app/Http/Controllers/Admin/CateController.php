@@ -14,7 +14,7 @@ class CateController extends Controller
     }
     public function cate_add(){
         $data = request()->all();
-        $info = Cate::where("cate_name",$data['cate_name'])->first();
+        $info = Cate::where("cate_name",$data['cate_name'])->where("cate_show",1)->first();
         if($info){
             return $message = [
                 "code"=>00001,

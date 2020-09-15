@@ -11,14 +11,19 @@
 </head>
 <body>
 @if(session('msg'))
-    <div class="alert alert-danger" style="color: red; margin-top: 20px;  font-size:20px; ">{{session('msg')}}</div>
+<blockquote class="layui-elem-quote" style="font-size:20px;">
+{{session('msg')}}
+</blockquote>
+
 @endif
-<center style="margin-bottom: 20px; margin-top: 20px;"><h1>管理员登录</h1></center>
-<form class="layui-form" action="/admin/regdo"  method="post">
+<center style="margin-bottom: 20px; margin-top: 20px;"><h1>后台登录</h1></center>
+<div style="border:1px solid #000; margin:0px auto; background-color:#fff; width:500px; height:320px;">
+
+<form class="layui-form" action="/admin/regdo"  method="post" style="margin-top:30px; margin-left:20px;" >
     <div class="layui-form-item">
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-block">
-            <input type="text" name="admin_name" lay-verify="title" autocomplete="off" class="layui-input names" style="width:1000px;">
+            <input type="text" name="admin_name" lay-verify="title" autocomplete="off" class="layui-input names" style="width:300px; border-radius:10px;">
             <span name="admin_name"></span>
         </div>
     </div>
@@ -26,46 +31,49 @@
     <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">
-            <input type="password" name="admin_pwd" lay-verify="required" autocomplete="off" class="layui-input pwds" style="width:1000px;">
+            <input type="password" name="admin_pwd" lay-verify="required" autocomplete="off" class="layui-input pwds" style="width:300px; border-radius:10px;">
             <span name="admin_pwd"></span>
         </div>
     </div>
-
-    <div class="layui-form-item">
+    <div class="layui-form-item div-reg"  >
         <label class="layui-form-label">验证码</label>
         <div class="layui-input-block">
-            <img id="imageUrl" src="{{$code['image_url']}}">
-            <input  type="text" name="code" lay-verify="required"  autocomplete="off" class="layui-input codes" style="width:850px; float: left;"/>
-
+            <img id="imageUrl" src="{{$code['image_url']}}" >
+            <input  type="text" name="code" lay-verify="required"  autocomplete="off" class="layui-input codes" style="width:150px; border-radius:10px; float: left;"/>
             <input type="hidden" id="sid" value="{{$code['sid']}}">
             <a href="javascript:;" id="code" ><u class="ad">换一张</u></a>
-
         </div>
+    </div>
 
+    <span style="margin-left:110px;" name="code"></span>
+    <div style="width: 216px; margin: 0; margin-left:130px; margin-top:20px; ">
+      <button type="submit" class="layui-btn layui-btn-fluid" style="border-radius:6px;">登录</button>
     </div>
-    <span name="code" style="margin-left:110px; "></span>
-    <div class="layui-form-item" style="margin-top:20px;">
-        <label class="layui-form-label"></label>
-        <div class="layui-input-block">
-            <button type="submit" class="layui-btn log">登录</button>
-    </div>
-    </div>
+  </div>
 </form>
+<div>
+</div>
 </body>
 </html>
 
 <script src="/static/js/jquery.js"></script>
 <script>
-    //获取验证码
+    //图片验证
     $(document).ready(function(){
        $(document).on('click','.ad',function(){
-            window.location.reload()
+           window.location.reload();
         })
-    $(".names").blur(function(){
+
+        //验证
+      $(".names").blur(function(){
         var admin_name = $('input[name="admin_name"]').val();
         if(admin_name==''){
             $('span[name="admin_name"]').html('<span style="color: red;">用户名不能为空</span>')
+            $('button[type="submit"]').prop('disabled','disabled');
             return false;
+        }else{
+            $('span[name="admin_name"]').html('<span style="color: green;">已填写</span>')
+            $('button[type="submit"]').prop('disabled',''); 
         }
     });
         $('.pwds').blur(function(){
@@ -73,19 +81,29 @@
             var admin_pwd = $('input[name="admin_pwd"]').val();
             if(admin_pwd==''){
                 $('span[name="admin_pwd"]').html('<span style="color: red;">密码不能为空</span>')
+                $('button[type="submit"]').prop('disabled','disabled');
                 return false;
+            }else{
+              $('span[name="admin_pwd"]').html('<span style="color: green;">已填写</span>')
+              $('button[type="submit"]').prop('disabled',''); 
             }
 
         });
 
         $('.codes').blur(function(){
+           
             var code = $('input[name="code"]').val();
             if(code==''){
                 $('span[name="code"]').html('<span style="color: red;">验证码不能为空</span>')
+                $('button[type="submit"]').prop('disabled','disabled');
                 return false;
+            }else{
+                $('span[name="code"]').html('<span style="color:green;">已填写</span>')
+                $('button[type="submit"]').prop('disabled',''); 
             }
 
         })
+      
 
 })
 </script>

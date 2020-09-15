@@ -176,6 +176,7 @@ class BrandController extends Controller
     #批量删除
     public function bdels(){
         $brand_id=request()->brand_id;
+        //dd($brand_id);
         foreach($brand_id as $k=>$v){
             $BrandModel=new Brand();
             $reg=$BrandModel->where('brand_id',$v)->update(['is_del'=>2]);

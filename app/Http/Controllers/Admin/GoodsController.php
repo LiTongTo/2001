@@ -22,12 +22,30 @@ class GoodsController extends Controller
         $brand_data = Brand::get();
         return view('admin.goods.goods',['data'=>$data,'brand_data'=>$brand_data]);
     }
+      #文件上传
+      public function uploads(Request $request){
+        $data = $request->file;
+        
+         if ($request->hasFile('file') && $request->file('file')->isValid()) {
+          $photo = request()->file;
+          $store_result = $photo->store('uploads');
+          $data='/'.$store_result;
+       
+         //dd($data);
+           return json_encode(['code'=>0,'msg'=>'上传成功','result'=>$data]);
+     }
+           return json_encode(['code'=>1,'msg'=>'上传失败']);
+    }
 
     public function stores(Request $request)
     {
 //        dd('www');
         $post = $request->except(['_token']);
+<<<<<<< HEAD
        // dd($post);
+=======
+        //dd($post);
+>>>>>>> master
         $GoodsModel = new Goods();
         $res = $GoodsModel->create($post);
         //dd($res);exit;
@@ -41,7 +59,7 @@ class GoodsController extends Controller
         $data = Goods::leftJoin('brand', 'goods.brand_id', '=', 'brand.brand_id')
                         ->leftJoin('cate', 'goods.cate_id', '=', 'cate.cate_id')
                         ->select('goods.*','cate.cate_name','brand.brand_name')
-                        ->get();
+                        ->paginate(3);
 //        dd($data);
         return view('admin.goods.gindex', ['data' => $data]);
     }

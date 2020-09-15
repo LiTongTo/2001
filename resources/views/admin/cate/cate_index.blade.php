@@ -36,7 +36,7 @@
             <td>{{$v->cate_id}}</td>
             <td cate_name="cate_name">
             {{str_repeat("—",$v->level*3)}}<span id="span">{{$v->cate_name}}</span>
-            <input type="text" id="input" value="{{$v->cate_name}}" style="display:none">
+            <input type="text" class="ded" value="{{$v->cate_name}}" style="display:none">
             </td>
             <td>
             <a  class="layui-btn layui-btn-sm "><i cate_id="{{$v->cate_id}}" class="layui-icon del"></i></a>
@@ -60,7 +60,8 @@ $(document).on("click","#span",function(){
     var _this = $(this);
     _this.hide();
     _this.next("input").show()
-    $("#input").blur(function(){
+    $(".ded").blur(function(){
+      // console.log(22);return;
         var _this = $(this);
         var value = _this.val();
         var cate_id = _this.parents('tr').attr("cate_id");
@@ -102,6 +103,7 @@ $(document).on("click",".del",function(){
                 success:function(res){
                     if(res.code==000000){
                         alert(res.message);
+                        history.go(0);
                     }
                 }
             })

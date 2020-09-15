@@ -16,7 +16,7 @@
 </div>
 @endif -->
 
-  <div class="layui-form-item">
+  <div class="layui-form-item" style="margin-top:20px;">
     <label class="layui-form-label">分类名称</label>
     <div class="layui-input-block">
       <input type="text" name="cate_name" lay-verify="title" autocomplete="off"  class="layui-input">
