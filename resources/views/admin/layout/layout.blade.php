@@ -98,7 +98,22 @@
 
           </dl>
         </li>
+        <li @if(strpos($name,'role')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
+          <a href="javscript:;">角色管理</a>
+          <dl class="layui-nav-child">
+            <dd @if($name=='user.create') class='layui-this'@endif><a href="/admin/role">角色添加</a></dd>
+            <dd @if($name=='user') class='layui-this'@endif><a href="/admin/roindex">角色列表</a></dd>
 
+          </dl>
+        </li>
+        <li @if(strpos($name,'role')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
+          <a href="javscript:;">权限管理</a>
+          <dl class="layui-nav-child">
+            <dd @if($name=='user.create') class='layui-this'@endif><a href="/admin/right">权限添加</a></dd>
+            <dd @if($name=='user') class='layui-this'@endif><a href="/admin/rigindex">权限列表</a></dd>
+
+          </dl>
+        </li>
 
       </ul>
      @else
@@ -141,6 +156,21 @@
           </dl>
         </li>
          </li>
+         <li @if(strpos($name,'role')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
+          <a href="javscript:;">角色管理</a>
+          <dl class="layui-nav-child">
+            <dd @if($name=='user.create') class='layui-this'@endif><a href="/admin/role">角色添加</a></dd>
+            <dd @if($name=='user') class='layui-this'@endif><a href="/admin/roindex">角色列表</a></dd>
+
+          </dl>
+        </li>
+        <li @if(strpos($name,'role')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
+          <a href="javscript:;">权限管理</a>
+          <dl class="layui-nav-child">
+          <dd @if($name=='user.create') class='layui-this'@endif><a href="/admin/right">权限添加</a></dd>
+            <dd @if($name=='user') class='layui-this'@endif><a href="/admin/rigindex">权限列表</a></dd>
+          </dl>
+        </li>
       </ul>
      @endif
     </div>

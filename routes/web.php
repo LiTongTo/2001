@@ -66,7 +66,20 @@ Route::prefix('/admin')->group(function(){
     Route::any('/rupdate/{admin_id}','Admin\RegController@rupdate');
     Route::any('/quit/','Admin\RegController@quit');
     
+    #######角色#########################################
+    Route::any('/role','Admin\RoleController@role');//添加
+    Route::any('/roledo','Admin\RoleController@roledo');//执行添加
+    Route::any('/roindex','Admin\RoleController@roindex');//展示
+    Route::any('/rodel/{id?}','Admin\RoleController@rodel');//删除
+    Route::any('/roedit/{id?}','Admin\RoleController@roedit');//执行修改
+    Route::any('/roup/{id?}','Admin\RoleController@roup');//执行修改
 
-
+     #######权限#########################################
+     Route::any('/right','Admin\RightController@right');//添加
+     Route::any('/rigdo','Admin\RightController@rigdo');//执行添加
+     Route::any('/rigindex','Admin\RightController@rigindex');//展示
+     Route::any('/rigdel/{id?}','Admin\RightController@rigdel');//删除
+     Route::any('/rigedit/{id?}','Admin\RightController@rigedit');//执行修改
+     Route::any('/rigup/{id?}','Admin\RightController@rigup');//执行修改
 });
 
