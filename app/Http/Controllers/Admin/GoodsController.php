@@ -23,10 +23,11 @@ class GoodsController extends Controller
         return view('admin.goods.goods',['data'=>$data,'brand_data'=>$brand_data]);
     }
 
-    public function store(Request $request)
+    public function stores(Request $request)
     {
 //        dd('www');
         $post = $request->except(['_token']);
+       // dd($post);
         $GoodsModel = new Goods();
         $res = $GoodsModel->create($post);
         //dd($res);exit;

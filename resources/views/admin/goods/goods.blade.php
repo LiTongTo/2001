@@ -6,16 +6,8 @@
   <a href="javascript:;">商品管理</a>
   <a><cite>商品添加</cite></a>
 </span>
-    @if ($errors->any())
-        <div class="alert alert-danger" style=' margin-top:20px;padding-left:20px;padding-top:10px;padding-bottom:10px; background-color:pink;'>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li style="color:#ff0000; margin-top:6px;">.{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    <form class="layui-form" action="/admin/store" method='post' style="margin-top:20px;">
+
+    <form class="layui-form" action="/admin/stores" method='post' style="margin-top:20px;">
 
         <div class="layui-form-item">
                 <label class="layui-form-label">商品名称</label>

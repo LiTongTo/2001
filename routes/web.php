@@ -31,7 +31,7 @@ Route::prefix('/admin')->group(function(){
 
    // ****************************************************************
     Route::any('goods','Admin\GoodsController@goods')->name('goods.create');//添加页面
-    Route::any('store','Admin\GoodsController@store');
+    Route::any('stores','Admin\GoodsController@stores');
     Route::any('gindex','Admin\GoodsController@gindex')->name('goods');
     Route::any('del','Admin\GoodsController@del');//删除
     Route::any('update/{id}','Admin\GoodsController@update');//修改
@@ -56,6 +56,8 @@ Route::prefix('/admin')->group(function(){
     Route::any('/redit/{admin_id}','Admin\RegController@redit');
     Route::any('/rupdate/{admin_id}','Admin\RegController@rupdate');
     Route::any('/quit/','Admin\RegController@quit');
+
+
 
 
 });
