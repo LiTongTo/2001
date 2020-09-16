@@ -41,7 +41,7 @@
                     </td>
                     <td align='center'>
                         <div class="layui-btn-group">
-                            <a href='/admin/imgedit/{{$v->id}}' class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
+                            <a href='/goods/imgedit/{{$v->id}}' class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
                             <a imgs_id="{{$v->id}}" class="layui-btn layui-btn-sm del "><i class="layui-icon "></i></a>
 
                         </div>
@@ -61,17 +61,7 @@
         <script src="/static/js/jquery.js"></script>
         <script>
             $(document).ready(function(){
-                //删除
-                {{--$(".del").click(function(){--}}
-                    {{--var ids = $(this).attr('ids');--}}
-                    {{--// alert(ids)--}}
-                    {{--if(window.confirm("是否删除")){--}}
-                        {{--var data = {};--}}
-                        {{--data.ids=ids;--}}
-                        {{--var url = "{{url('/img_del')}}";--}}
-                        {{----}}
-                    {{--}--}}
-                {{--})--}}
+                
 
                 //删除
                 $(".del").click(function(){
@@ -81,7 +71,7 @@
 
                         $.ajax({
                             data:{'id':id},
-                            url:'/admin/img_del',
+                            url:'/goods/img_del',
                             type:'post',
                             dataType:'json',
                             success:function(reg){

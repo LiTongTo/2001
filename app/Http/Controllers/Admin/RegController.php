@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Role;
+use App\Models\AdminRole;
 use Illuminate\Validation\Rule;
-
+use DB;
 class RegController extends Controller
 {
     public function reg(){
@@ -38,11 +40,20 @@ class RegController extends Controller
 
 
     public function create(){
-        return view('admin.reg.create');
+        $RoleModel=new Role();
+        $data=$RoleModel->get();
+        //dd($data);
+        return view('admin.reg.create',compact('data'));
     }
 
     public function rstore(Request $request){
-        $data = $request->except('_token');
+        DB::beginTransaction();
+        try{
+        $role=$request->role;
+        //dd($role);
+        $data = $request->except('_token','role');
+        // $data['admin_pwd']=bcrypt($data['admin_pwd']);
+        // dd($data);
         $data['add_time']=time();
         $validatedData = $request->validate([
             'admin_name' => 'required|unique:admin',
@@ -54,7 +65,24 @@ class RegController extends Controller
         ]);
         $res = Admin::create($data);
         if($res){
-            return redirect('/admin/list');
+             if(count($role)){
+                 foreach($role as $k=>$v){
+                     $admin_role[]=[
+                         'admin_id'=>$res->admin_id,
+                         'role_id'=>$v
+                     ];
+                     $AdminRoleModel=new AdminRole();
+                     
+                 }
+                $AdminRoleModel->insert($admin_role);
+              
+             }
+             DB::commit();
+             return redirect('/reg/list');
+            }  
+        }catch(Exception $e){
+            DB::rollBack();
+            dump($e->getMessage());
         }
     }
 

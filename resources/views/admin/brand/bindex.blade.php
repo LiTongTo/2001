@@ -56,7 +56,7 @@
         <td align='center'>
         <div class="layui-btn-group">
           
-            <a href='/admin/bedit/{{$v->brand_id}}' class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
+            <a href='/brand/bedit/{{$v->brand_id}}' class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
             <a brand_id="{{$v->brand_id}}" class="layui-btn layui-btn-sm "><i class="layui-icon del"></i></a>
             
   </div>  
@@ -88,7 +88,7 @@
                 var brand_name=$(this).parent('td').attr('zd');
                 var _val=$(this).val();
                 $.ajax({
-                    url:'/admin/jd',
+                    url:'/brand/jd',
                     type:'post',
                     data:{'brand_id':brand_id,'brand_name':brand_name,'_val':_val},
                     dataType:'json',
@@ -115,7 +115,7 @@
                 var  brand_id=$(this).parent('a').attr('brand_id')
                 $.ajax({
                         data:{'brand_id':brand_id},
-                        url:'/admin/bdel',
+                        url:'/brand/bdel',
                         type:'get',
                         dataType:'json',
                         success:function(reg){
@@ -153,7 +153,7 @@
             })
            
             //return false;
-            $.get('/admin/bdels',{brand_id:ids},function (res){
+            $.get('/brand/bdels',{brand_id:ids},function (res){
                    //console.log(res);
                     if(res.code=='000000'){
                        

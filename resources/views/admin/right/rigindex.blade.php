@@ -8,24 +8,6 @@
 </span>
 
 
-    <form class="layui-form" action="" style="margin-top:20px;">
-        <div class="layui-form-item">
-            <div class="layui-inline">
-
-                <div class="layui-input-inline">
-                    <input type="text" name="right_name"   autocomplete="off" class="layui-input">
-                </div>
-            </div>
-
-            <div class="layui-inline">
-
-                <div class="layui-input-inline">
-                    <button class="layui-btn ">搜索</button>
-                </div>
-            </div>
-        </div>
-    </form>
-
     <div class="layui-form">
         <table class="layui-table">
             <colgroup>
@@ -39,7 +21,7 @@
                 <td align='center' >id</td>
                 <td align='center'>权限</td>
                 <td align='center'>url</td>
-                <td align='center'>简介</td>
+                <td align='center'>路由别名</td>
                 <td align='center'>添加时间</td>
                 <td align='center'>操作</td>
             </tr>
@@ -48,27 +30,56 @@
             @foreach($reg as $k=>$v)
                 <tr>
                     <td align='center'>{{$v->right_id}}</td>
-                    <td align='center'>{{$v->right_name}}</td>
+                    <td align='center'>
+                        {{str_repeat("-",$v->level*3)}}{{$v->right_name}}
+                    </td>
                     <td align='center'>{{$v->right_url}}</td>
-                    <td align='center'>{{$v->right_desc}}</td>
+                    <td align='center'>{{$v->right_as}}</td>
                     <td align='center'>{{date('Y-m-d h:i:s',$v->add_time)}}</td>
                     <td align='center'>
                         <div class="layui-btn-group">
-                            <a href="{{url('/admin/rigedit/'.$v->right_id)}}" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
-                            <a href="/admin/rigdel/{{$v->right_id}}"  class="layui-btn layui-btn-sm"><i class="layui-icon del"></i></a>
+                            <a href="{{url('/right/rigedit/'.$v->right_id)}}" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
+                            <a href="javascript:;" right_id="{{$v->right_id}}"  class="layui-btn layui-btn-sm del"><i class="layui-icon"></i></a>
                           
 
                         </div>
                     </td>
                 </tr>
             @endforeach
-            <tr>
-                <td colspan="6px">{{--{{$data->appends($query)->links('vendor.pagination.adminshop')}}--}}
-                </td>
-            </tr>
-            
+           
             </tbody>
 
         </table>
 
 @endsection
+<script src="/static/js/jquery.js"></script>
+<script>
+       $(document).on('click','.del',function(){
+        $al=confirm('确定要删除吗！')
+               if($al==true){
+                var right_id=$(this).attr('right_id')
+                $.ajax({
+                        data:{'right_id':right_id},
+                        url:'/right/rigdel',
+                        type:'get',
+                        dataType:'json',
+                        success:function(reg){
+                            if(reg.code=='000001'){
+                                 alert(reg.msg)
+                                 location.href=reg.url
+                            }
+                            if(reg.code=='000000'){
+                                 alert(reg.msg)
+                                 location.href=reg.url
+                            }
+                            if(reg.code=='000002'){
+                                 alert(reg.msg)
+                                 location.href=reg.url
+                            }
+                        }
+                   })
+               }else{
+                 console.log('qvxiao')
+               }
+      })
+</script>

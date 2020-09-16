@@ -15,7 +15,7 @@
             </ul>
         </div>
     @endif
-    <form class="layui-form" action="/admin/imgsdo" method='post' style="margin-top:20px;">
+    <form class="layui-form" action="/goods/imgsdo" method='post' style="margin-top:20px;">
 
         <div class="layui-form-item" style="margin-left: -10px;">
             <label class="layui-form-label">商品名称</label>

@@ -48,7 +48,7 @@
   <div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-      @if(session('login')->admin_name=='admin')
+      
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
       @php $name=Route::currentRouteName();@endphp
 
@@ -57,10 +57,10 @@
           <a class="" href="javascript:;">商品管理</a>
           <dl class="layui-nav-child">
 
-            <dd @if($name=='goods.create') class='layui-this' @endif><a href="/admin/goods">商品添加</a></dd>
-            <dd @if($name=='goods') class='layui-this' @endif ><a href="/admin/gindex">商品列表</a></dd>
-            <dd @if($name=='goods.imgs') class='layui-this' @endif><a href="/admin/goods_imgs">商品相册</a></dd>
-            <dd @if($name=='imgslist') class='layui-this' @endif><a href="/admin/goods_imgslist">相册列表</a></dd>
+            <dd @if($name=='goods.create') class='layui-this' @endif><a href="/goods/goods">商品添加</a></dd>
+            <dd @if($name=='goods') class='layui-this' @endif ><a href="/goods/gindex">商品列表</a></dd>
+            <dd @if($name=='goods.imgs') class='layui-this' @endif><a href="/goods/goods_imgs">商品相册</a></dd>
+            <dd @if($name=='imgslist') class='layui-this' @endif><a href="/goods/goods_imgslist">相册列表</a></dd>
 
           </dl>
         </li>
@@ -68,8 +68,8 @@
         <li @if(strpos($name,'brand')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
             <a href="javascript:;">品牌管理</a>
             <dl class="layui-nav-child">
-            <dd @if($name=='brand.create') class='layui-this'@endif><a href="/admin/brand">品牌添加</a></dd>
-            <dd @if($name=='brand') class='layui-this'@endif><a href="/admin/bindex">品牌列表</a></dd>
+            <dd @if($name=='brand.create') class='layui-this'@endif><a href="/brand/brand">品牌添加</a></dd>
+            <dd @if($name=='brand') class='layui-this'@endif><a href="/brand/bindex">品牌列表</a></dd>
 
           </dl>
         </li>
@@ -77,20 +77,12 @@
          <li @if(strpos($name,'cate')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
             <a href="javascript:;">分类管理</a>
             <dl class="layui-nav-child">
-
-
-
-
-            <dd @if($name=='cate.create') class='layui-this'@endif><a href="/admin/cate">分类添加</a></dd>
-            <dd @if($name=='cate') class='layui-this'@endif><a href="/admin/cate_index">分类列表</a></dd>
-
-
+            <dd @if($name=='cate.create') class='layui-this'@endif><a href="/cate/cate">分类添加</a></dd>
+            <dd @if($name=='cate') class='layui-this'@endif><a href="/cate/cate_index">分类列表</a></dd>
           </dl>
         </li>
          </li>
-
-
-        <li @if(strpos($name,'user')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
+        <li @if(strpos($name,'admin')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
           <a href="javscript:;">管理员管理</a>
           <dl class="layui-nav-child">
             <dd @if($name=='user.create') class='layui-this'@endif><a href="/admin/create">管理员添加</a></dd>
@@ -101,78 +93,22 @@
         <li @if(strpos($name,'role')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
           <a href="javscript:;">角色管理</a>
           <dl class="layui-nav-child">
-            <dd @if($name=='user.create') class='layui-this'@endif><a href="/admin/role">角色添加</a></dd>
-            <dd @if($name=='user') class='layui-this'@endif><a href="/admin/roindex">角色列表</a></dd>
+            <dd @if($name=='role.create') class='layui-this'@endif><a href="/role/role">角色添加</a></dd>
+            <dd @if($name=='role') class='layui-this'@endif><a href="/role/roindex">角色列表</a></dd>
 
           </dl>
         </li>
-        <li @if(strpos($name,'role')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
+        <li @if(strpos($name,'right')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
           <a href="javscript:;">权限管理</a>
           <dl class="layui-nav-child">
-            <dd @if($name=='user.create') class='layui-this'@endif><a href="/admin/right">权限添加</a></dd>
-            <dd @if($name=='user') class='layui-this'@endif><a href="/admin/rigindex">权限列表</a></dd>
+            <dd @if($name=='right.create') class='layui-this'@endif><a href="/right/right">权限添加</a></dd>
+            <dd @if($name=='right') class='layui-this'@endif><a href="/right/rigindex">权限列表</a></dd>
 
           </dl>
         </li>
 
       </ul>
-     @else
-     <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-      @php $name=Route::currentRouteName();@endphp
-
-        <!--layui-nav-itemed-->
-        <li @if(strpos($name,'goods')!==false || strpos($name,'imgslist')!==false ) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
-          <a class="" href="javascript:;">商品管理</a>
-          <dl class="layui-nav-child">
-
-            <dd @if($name=='goods.create') class='layui-this' @endif><a href="/admin/goods">商品添加</a></dd>
-            <dd @if($name=='goods') class='layui-this' @endif ><a href="/admin/gindex">商品列表</a></dd>
-            <dd @if($name=='goods.imgs') class='layui-this' @endif><a href="/admin/goods_imgs">商品相册</a></dd>
-            <dd @if($name=='imgslist') class='layui-this' @endif><a href="/admin/goods_imgslist">相册列表</a></dd>
-
-          </dl>
-        </li>
-
-        <li @if(strpos($name,'brand')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
-            <a href="javascript:;">品牌管理</a>
-            <dl class="layui-nav-child">
-            <dd @if($name=='brand.create') class='layui-this'@endif><a href="/admin/brand">品牌添加</a></dd>
-            <dd @if($name=='brand') class='layui-this'@endif><a href="/admin/bindex">品牌列表</a></dd>
-
-          </dl>
-        </li>
-
-         <li @if(strpos($name,'cate')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item"@endif>
-            <a href="javascript:;">分类管理</a>
-            <dl class="layui-nav-child">
-
-
-
-
-            <dd @if($name=='cate.create') class='layui-this'@endif><a href="/admin/cate">分类添加</a></dd>
-            <dd @if($name=='cate') class='layui-this'@endif><a href="/admin/cate_index">分类列表</a></dd>
-
-
-          </dl>
-        </li>
-         </li>
-         <li @if(strpos($name,'role')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
-          <a href="javscript:;">角色管理</a>
-          <dl class="layui-nav-child">
-            <dd @if($name=='user.create') class='layui-this'@endif><a href="/admin/role">角色添加</a></dd>
-            <dd @if($name=='user') class='layui-this'@endif><a href="/admin/roindex">角色列表</a></dd>
-
-          </dl>
-        </li>
-        <li @if(strpos($name,'role')!==false) class="layui-nav-item layui-nav-itemed" @else class="layui-nav-item" @endif>
-          <a href="javscript:;">权限管理</a>
-          <dl class="layui-nav-child">
-          <dd @if($name=='user.create') class='layui-this'@endif><a href="/admin/right">权限添加</a></dd>
-            <dd @if($name=='user') class='layui-this'@endif><a href="/admin/rigindex">权限列表</a></dd>
-          </dl>
-        </li>
-      </ul>
-     @endif
+    
     </div>
   </div>
   <div class="layui-body">

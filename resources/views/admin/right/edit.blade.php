@@ -7,7 +7,7 @@
   <a href="javascript:;">权限修改</a>
 </span>
 
-<form class="layui-form" action="{{url('/admin/rigup/'.$reg->right_id)}}" method="post" lay-filter="example" style="margin-top:20px;" >
+<form class="layui-form" action="{{url('/right/rigup/'.$reg->right_id)}}" method="post" lay-filter="example" style="margin-top:20px;" >
     @if ($errors->any())
         <div class="alert alert-danger" style="padding-bottom: 20px;padding-left: 20px">
             <ul>
@@ -30,9 +30,9 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">权限简介</label>
+        <label class="layui-form-label">路由别名</label>
         <div class="layui-input-block">
-        <textarea name="right_desc" cols="30" rows="10">{{$reg->right_desc}}</textarea>
+        <input type="text" name="right_as" value="{{$reg->right_as}}" lay-verify="title" autocomplete="off"  class="layui-input">
         </div>
     </div>
 

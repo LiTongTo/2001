@@ -7,7 +7,7 @@
   <a href="javascript:;">权限添加</a>
 </span>
 
-<form class="layui-form" action="{{url('/admin/rigdo')}}" method="post" lay-filter="example" style="margin-top:20px;" >
+<form class="layui-form" action="{{url('/right/rigdo')}}" method="post" lay-filter="example" style="margin-top:20px;" >
     @if ($errors->any())
         <div class="alert alert-danger" style="padding-bottom: 20px;padding-left: 20px">
             <ul>
@@ -30,12 +30,23 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">权限简介</label>
+        <label class="layui-form-label">路由别名</label>
         <div class="layui-input-block">
-        <textarea name="right_desc" cols="30" rows="10"></textarea>
+        <input type="text" name="right_as" lay-verify="title" autocomplete="off"  class="layui-input">
         </div>
     </div>
-
+    <div class="layui-form-item">
+    <label class="layui-form-label">Menu</label>
+    <div class="layui-input-block">
+      <select name="parent_id" lay-filter="aihao">
+        <option value="0">顶级分类</option>
+        @foreach($reg as $k=>$v)
+        <option value="{{$v->parent_id}}">{{str_repeat('—',$v->level*3)}}{{$v->right_name}}</option>
+        @endforeach
+       
+      </select>
+    </div>
+  </div>
     <div class="layui-form-item">
         <label class="layui-form-label"></label>
         <div class="layui-input-block">

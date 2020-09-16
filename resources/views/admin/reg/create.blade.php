@@ -29,7 +29,20 @@
             <input type="password" name="admin_pwd" placeholder="请输入密码" autocomplete="off" class="layui-input">
         </div>
     </div>
-
+    <div class="layui-form-item">
+        <label class="layui-form-label">管理员电话</label>
+        <div class="layui-input-block">
+            <input type="text" name="admin_tel" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色</label>
+        <div class="layui-input-block">
+           @foreach($data as $k=>$v)
+            <input type="checkbox" name="role[]" lay-skin="primary" value="{{$v['role_id']}}" title="{{$v['role_name']}}" >
+            @endforeach
+        </div>
+    </div>
     <div class="layui-form-item">
         <label class="layui-form-label"></label>
         <div class="layui-input-block">

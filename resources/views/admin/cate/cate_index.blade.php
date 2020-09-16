@@ -70,7 +70,7 @@ $(document).on("click","#span",function(){
             data.cate_id = cate_id;
             data.cate_name = cate_name;
             data.value = value;
-            var url = "{{url('/admin/jdjg')}}";
+            var url = "{{url('/cate/jdjg')}}";
             $.ajax({
                     type:"post",
                     data:data,
@@ -93,7 +93,7 @@ $(document).on("click",".del",function(){
         // consoleco.log(cate_id);
         var data = {};
             data.cate_id = cate_id;
-            var url = "{{url('/admin/cate_del')}}";
+            var url = "{{url('/cate/cate_del')}}";
         if(window.confirm("是否删除")){
             $.ajax({
                 type:"post",

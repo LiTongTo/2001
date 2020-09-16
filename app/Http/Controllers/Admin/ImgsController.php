@@ -42,7 +42,12 @@ class ImgsController extends Controller
         $goods = new Gimgs();
         $post = $goods->create($data);
         //dd($post);
-        return redirect('/admin/goods_imgslist');
+        if($post){
+            return redirect('/goods/goods_imgslist');
+        }else{
+            return redirect('/goods/goods_imgs');
+        }
+       
     }
 
     //相册展示
@@ -65,7 +70,7 @@ class ImgsController extends Controller
             $message = [
                 'code'=> '000000',
                 'msg'=>'删除成功',
-                'url'=>'/admin/goods_imgslist'
+                'url'=>'/goods/goods_imgslist'
 
             ];
             return json_encode($message,JSON_UNESCAPED_UNICODE);
@@ -101,7 +106,11 @@ class ImgsController extends Controller
         // dd($arr);
         $GimgsModel=new Gimgs();
         $data=$GimgsModel->where('id',$id)->update($arr);
-        return redirect('/admin/goods_imgslist');
+        if($data){
+            return redirect('/goods/goods_imgslist');
+        }else{
+            return redirect('/goods/goods_imgslist');
+        }
     }
    
 

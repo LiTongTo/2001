@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Goods;
 use App\Models\Cate;
 use App\Models\Brand;
+use Validator;
 //use Illuminate\Support\Facades\Request;
 
 class GoodsController extends Controller
@@ -42,11 +43,37 @@ class GoodsController extends Controller
 //        dd('www');
         $post = $request->except(['_token']);
         //dd($post);
+         $validator=Validator::make($post,[
+             'goods_name'=>'required|unique:goods',
+             'goods_sn'=>'required',
+             'cate_id'=>'required',
+             'brand_id'=>'required',
+             'goods_price'=>'required',
+             'goods_img'=>'required',
+             'goods_store'=>'required',
+             'goods_desc'=>'required',
+         ],[
+            'goods_name.required'=>'商品名称不能为空',
+            'goods_name.unique'=>'商品名称已存在',
+            'goods_sn.required'=>'商品号不能为空 ',
+            'cate_id.required'=>'分类不能为空',
+            'brand_id.required'=>'品牌不能为空',
+            'goods_price.required'=>'商品价格不能为空',
+            'goods_img.required'=>'商品图片不能为空',
+            'goods_store.required'=>'商品数量不能为空',
+            'goods_desc.required'=>'商品详情',
+         ]);
+
+         if ($validator->fails()) {
+            return redirect('goods/goods')
+            ->withErrors($validator)
+            ->withInput();
+            }
         $GoodsModel = new Goods();
         $res = $GoodsModel->create($post);
         //dd($res);exit;
         if ($res) {
-            return redirect('admin/gindex');
+            return redirect('goods/gindex');
         }
     }
 
@@ -54,6 +81,7 @@ class GoodsController extends Controller
     {
         $data = Goods::leftJoin('brand', 'goods.brand_id', '=', 'brand.brand_id')
                         ->leftJoin('cate', 'goods.cate_id', '=', 'cate.cate_id')
+                        ->where('goods.is_del',1)
                         ->select('goods.*','cate.cate_name','brand.brand_name')
                         ->paginate(3);
 //        dd($data);
@@ -65,17 +93,16 @@ class GoodsController extends Controller
 //        dump($id);
      $data = request()->all();
 //        dd($data);
-        $res = Goods::where('goods_id', $data['goods_id'])->delete();
+        $res = Goods::where('goods_id', $data['goods_id'])->update(['is_del'=>2]);
         if ($res) {
             if (request()->ajax()) {
                 return json_encode(['error_no' => '1', 'error_msg' => '删除成功']);
             }
-            return redirect('brand/gindex');
-
-
 
         }
     }
+
+    #修改视图
     public function edit(){
         $brand_data = Brand::get();
         $id=request()->id;
@@ -83,21 +110,21 @@ class GoodsController extends Controller
         $data = Cate::get();
         $data=self::list_level($data);
         $goods_data=$GoodsModel->where('goods_id',$id)->first();
-//        dd($goods_data);
+       // dd($goods_data);
         return view('admin.goods.edit',['data'=>$data,'goods_data'=>$goods_data,'brand_data'=>$brand_data]);
 
 
     }
-
+   #执行修改
     public function update($id){
         $request=request();
-//        dd($request);
+         //dd($request);
         $data = $request->except(['_token','file']);
         $res=Goods::where('goods_id',$id)->update($data);
         if($res!==false){
-            return redirect('admin/gindex');
+            return redirect('goods/gindex');
         }else{
-            return redirect('admin/edit');
+            return redirect('goods/edit');
         }
     }
 

@@ -52,8 +52,8 @@
                     <td align='center'>{{date('Y-m-d h:i:s',$v->add_time)}}</td>
                     <td align='center'>
                         <div class="layui-btn-group">
-                            <a href="{{url('/admin/roedit/'.$v->role_id)}}" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
-                            <a href="/admin/rodel/{{$v->role_id}}"  class="layui-btn layui-btn-sm"><i class="layui-icon del"></i></a>
+                            <a href="{{url('/role/roedit/'.$v->role_id)}}" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></a>
+                            <a href="/role/rodel/{{$v->role_id}}"  class="layui-btn layui-btn-sm"><i class="layui-icon del"></i></a>
                           
 
                         </div>
@@ -61,7 +61,8 @@
                 </tr>
             @endforeach
             <tr>
-                <td colspan="6px">{{--{{$data->appends($query)->links('vendor.pagination.adminshop')}}--}}
+                <td colspan="6px">
+                {{$data->links('vendor.pagination.adminshop')}}
                 </td>
             </tr>
             

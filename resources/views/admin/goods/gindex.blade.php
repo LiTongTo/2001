@@ -76,35 +76,14 @@
         @endsection
         <script src="/static/js/jquery.js"></script>
         <script>
-        {{--$(document).on("click",".del",function () {--}}
-        {{--    var goods_id = $(this).attr("goods_id");--}}
-        {{--    var data = {};--}}
-        {{--    data.goods_id = goods_id;--}}
-        {{--    var url = "{{url('admin/del')}}";--}}
-        {{--    if(window.confirm("是否删除")){--}}
-        {{--        $.ajax({--}}
-        {{--            type:"post",--}}
-        {{--            data:data,--}}
-        {{--            url:url,--}}
-        {{--            dateType:"json",--}}
-        {{--            success:function (res) {--}}
-        {{--                console.log(res)--}}
-        {{--            }--}}
-        {{--        })--}}
-        {{--    }--}}
-        {{--        // alert(122);--}}
-        {{--})--}}
         $(document).on('click','.del',function () {
-        // })
-        // $(".del").click(function() {
-        //     alert(11);
             $al = confirm('确定要删除吗！')
             if ($al== true) {
                 var goods_id = $(this).attr("goods_id");
-{{--                var url = "{{url('admin/del')}}";--}}
+{{--                var url = "{{url('goods/del')}}";--}}
                 $.ajax({
                     data: {'goods_id': goods_id},
-                    url: "{{url('admin/del')}}",
+                    url: "{{url('goods/del')}}",
                     type: 'get',
                     dataType: 'json',
                     success: function (res) {

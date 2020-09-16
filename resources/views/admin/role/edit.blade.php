@@ -7,7 +7,7 @@
   <a href="javascript:;">角色修改</a>
 </span>
 
-<form class="layui-form" action="{{url('/admin/roup/'.$data->role_id)}}" method="post" lay-filter="example" style="margin-top:20px;" >
+<form class="layui-form" action="{{url('/role/roup/'.$data->role_id)}}" method="post" lay-filter="example" style="margin-top:20px;" >
     @if ($errors->any())
         <div class="alert alert-danger" style="padding-bottom: 20px;padding-left: 20px">
             <ul>

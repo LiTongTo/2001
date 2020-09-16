@@ -27,7 +27,7 @@ class RoleController extends Controller
        ]
        );
        if ($validator->fails()) {
-        return redirect('admin/role')
+        return redirect('role/role')
         ->withErrors($validator)
         ->withInput();
         }
@@ -36,9 +36,9 @@ class RoleController extends Controller
         $RoleModel=new Role();
         $reg=$RoleModel->create($data);
         if($reg){
-            return redirect('/admin/roindex');
+            return redirect('/role/roindex');
         }else{
-            return redirect('/admin/role');
+            return redirect('/role/role');
         }
     }
     //展示
@@ -55,9 +55,9 @@ class RoleController extends Controller
         $reg=$RoleModel->where('role_id',$id)->update(['is_del'=>2]);
         // dd($reg);
         if($reg){
-            return redirect('/admin/roindex');
+            return redirect('/role/roindex');
         }else{
-            return redirect('/admin/roindex');
+            return redirect('/role/roindex');
         }
     }
 
@@ -85,7 +85,7 @@ class RoleController extends Controller
              'role_desc'=>'简介不能为空'
         ]);
         if ($validator->fails()) {
-            return redirect('admin/roedit')
+            return redirect('role/roedit')
             ->withErrors($validator)
             ->withInput();
             }
@@ -94,9 +94,9 @@ class RoleController extends Controller
        $RoleModel=new Role();
        $reg=$RoleModel->where('role_id',$id)->update($data);
        if($reg){
-           return redirect('/admin/roindex');
+           return redirect('/role/roindex');
        }else{
-           return redirect('/admin/role');
+           return redirect('/role/role');
        }
     }
 }

@@ -46,7 +46,7 @@
             var data = {};
             data.cate_name = cate_name;
             data.parent_id = parent_id;
-            var url = "{{url('/admin/cate_add')}}";
+            var url = "{{url('/cate/cate_add')}}";
             $.ajax({
                 type:"post",
                 url:url,
@@ -59,7 +59,7 @@
                     }
                     if(res.success==true){
                     alert(res.message);
-                        location.href="{{url('/admin/cate_index')}}";
+                        location.href="{{url('/cate/cate_index')}}";
                     }
                 }
             })

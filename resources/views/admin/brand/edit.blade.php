@@ -15,7 +15,7 @@
 </ul>
 </div>
 @endif
-<form class="layui-form" action="/admin/bupdate/{{$data->brand_id}}" method='post' style="margin-top:20px;">
+<form class="layui-form" action="/brand/bupdate/{{$data->brand_id}}" method='post' style="margin-top:20px;">
 
   <div class="layui-form-item">
     <label class="layui-form-label">品牌名称</label>

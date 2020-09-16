@@ -58,7 +58,7 @@ class BrandController extends Controller
 
         );
             if ($validator->fails()) {
-                return redirect('admin/brand')
+                return redirect('brand/brand')
                 ->withErrors($validator)
                 ->withInput();
                 }
@@ -67,7 +67,7 @@ class BrandController extends Controller
         $res=$BrandModel->create($data);
        // dd($res);
         if($res){
-            return redirect('/admin/bindex');
+            return redirect('/brand/bindex');
         }
     }
     #品牌展示
@@ -105,11 +105,11 @@ class BrandController extends Controller
          $BrandModel=new Brand();
          $res=$BrandModel->where('brand_id',$brand_id)->update($data);
          if($res==0){
-             return redirect('/admin/bindex');
+             return redirect('/brand/bindex');
          } else if($res==1){
-            return redirect('/admin/bindex');
+            return redirect('/brand/bindex');
          }else{
-            return redirect('/admin/bindex');
+            return redirect('/brand/bindex');
          }
 
     }
